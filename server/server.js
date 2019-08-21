@@ -1,14 +1,16 @@
 const express = require('express');
-const path = require('path');
+// const path = require('path');
+
 const port = 3000;
-app = express();
+const app = express();
 
 app.use(require('morgan')('dev'));
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.use(express.static(__dirname + './../public'));
 
-app.listen(port, ()=>{
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(`${__dirname}./../public`));
+
+app.listen(port, () => {
+  // eslint-disable-next-line no-console
   console.log(`Listening to port ${[port]}`);
 });
-
