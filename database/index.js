@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
+
 const db = mongoose.connection;
 
 mongoose.connect('mongodb://localhost/airbnb', {
-  useNewUrlParser: true
+  useNewUrlParser: true,
 });
 
-var placeSchema = new mongoose.Schema ({
+const placeSchema = new mongoose.Schema({
   url: String,
   title: String,
   city: String,
@@ -13,24 +14,24 @@ var placeSchema = new mongoose.Schema ({
   propertyType: String,
   price: Number,
   reviews: [Number],
-  savedList: [String]
+  savedList: [String],
 });
 
 const Place = mongoose.model('Places', placeSchema);
 
-var activitySchema = new mongoose.Schema ({
+const activitySchema = new mongoose.Schema({
   url: String,
   title: String,
   category: String,
   price: Number,
   reviews: [Number],
-  savedList: [String]
+  savedList: [String],
 });
 
 const Activity = mongoose.model('Activity', activitySchema);
 
-var savedListSchema = new mongoose.Schema ({
-  name: String
+const savedListSchema = new mongoose.Schema({
+  name: String,
 });
 
 const SavedList = mongoose.model('SavedList', savedListSchema);
@@ -39,5 +40,5 @@ module.exports = {
   db,
   SavedList,
   Place,
-  Activity
+  Activity,
 };
