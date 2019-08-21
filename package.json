@@ -12,7 +12,8 @@
     "build:dev": "npx webpack -D --watch",
     "build": "npx webpack",
     "start:dev": "nodemon ./server/server.js",
-    "start": "node ./server/server.js"
+    "start": "node ./server/server.js",
+    "mock": "node ./database/index.js"
   },
   "dependencies": {
     "express": "^4.17.1",
