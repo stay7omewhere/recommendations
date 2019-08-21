@@ -12,10 +12,13 @@
     "build:dev": "npx webpack -D --watch",
     "build": "npx webpack",
     "start:dev": "nodemon ./server/server.js",
-    "start": "node ./server/server.js"
+    "start": "node ./server/server.js",
+    "mock": "node ./database/index.js"
   },
   "dependencies": {
     "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "mongoose": "^5.6.10",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
