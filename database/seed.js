@@ -49,6 +49,7 @@ model.db.once('open', () => {
 
       // generates a places data
       const newPlace = new model.Place({
+        id: i,
         url: `https://mock-property-images.s3-us-west-1.amazonaws.com/houses/house-${i}.jpeg`,
         title: faker.lorem.sentence(),
         city: faker.address.city(),
