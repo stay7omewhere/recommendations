@@ -7,6 +7,7 @@ mongoose.connect('mongodb://localhost/airbnb', {
 });
 
 const placeSchema = new mongoose.Schema({
+  id: Number,
   url: String,
   title: String,
   city: String,
