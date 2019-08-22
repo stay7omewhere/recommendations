@@ -23,6 +23,7 @@ class App extends React.Component {
       WebkitFontSmoothing: 'antialiased',
       fontFamily: 'Montserrat, sans-serif',
       textSizeAdjust: '100%',
+      lineHeight: '1.3em',
     };
 
     const { places } = this.state;
