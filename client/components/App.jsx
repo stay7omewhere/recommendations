@@ -1,4 +1,5 @@
 import React from 'react';
+import Place from './Place';
 
 class App extends React.Component {
   constructor(props) {
@@ -8,9 +9,13 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+
+  }
+
   render() {
     return (
-      <div>test</div>
+      <Place />
     );
   }
 }
