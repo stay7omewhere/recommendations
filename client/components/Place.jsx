@@ -36,14 +36,8 @@ const Place = (props) => {
     fontSize: '2em',
   };
 
-  let average = 0;
-
   if (place) {
-    for (let i = 0; i < place.reviews.length; i += 1) {
-      average += place.reviews[i];
-    }
-    average /= place.reviews.length;
-
+    console.log(place);
     return (
       <div>
         <img
@@ -65,7 +59,7 @@ const Place = (props) => {
           {`$${place.price}/night`}
         </div>
         <div style={reviewStyle}>
-          {`${average} = ${place.reviews.length}`}
+          {`${place.totalReviews} , ${place.averageReview}`}
         </div>
       </div>
     );
@@ -80,7 +74,8 @@ Place.propTypes = {
     title: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    reviews: PropTypes.arrayOf(PropTypes.number),
+    totalReviews: PropTypes.number.isRequired,
+    averageReview: PropTypes.number.isRequired,
   }),
 };
 
