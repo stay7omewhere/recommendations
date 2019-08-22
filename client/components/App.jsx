@@ -20,7 +20,7 @@ class App extends React.Component {
 
   render() {
     const appStyle = {
-      webkitFontSmoothing: 'antialiased',
+      WebkitFontSmoothing: 'antialiased',
       fontFamily: 'Montserrat, sans-serif',
       textSizeAdjust: '100%',
     };
