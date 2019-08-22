@@ -1,5 +1,8 @@
+/* eslint-disable no-undef */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
-import { shallow, configure } from 'enzyme';
+import { shallow } from 'enzyme';
 import Place from '../client/components/Place';
 
 describe('Place Component', () => {
@@ -23,7 +26,9 @@ describe('Place Component', () => {
 
   it('should render a title', () => {
     const wrapper = shallow(<Place place={testPlace} />);
-    expect(wrapper.containsMatchingElement(<div>Tenetur numquam sed ut non ex voluptas ut qui.</div>)).toBe(true);
+    expect(wrapper.containsMatchingElement(
+      <div>Tenetur numquam sed ut non ex voluptas ut qui.</div>,
+    )).toBe(true);
   });
 
   it('should render the property type and city', () => {
