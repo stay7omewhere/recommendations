@@ -9,7 +9,7 @@
   },
   "private": true,
   "scripts": {
-    "build:dev": "npx webpack -D --watch",
+    "build:dev": "npx webpack --mode=development --watch",
     "build": "npx webpack",
     "start:dev": "nodemon ./server/server.js",
     "start": "node ./server/server.js",
