@@ -7,39 +7,75 @@ const Place = (props) => {
   };
 
   const { place } = props;
-
-  const imageStyle = {
+  const placeDiv = {
     width: 316,
+  };
+  const imageStyle = {
+    maxWidth: '100%',
+    maxHeight: '100%',
   };
 
   const propertyStyle = {
-    fontSize: '.7em',
+    fontSize: '.75em',
     color: 'rgb(118, 118, 118)',
-    fontWeight: '700',
+    fontFamily: 'Nunito Sans, sans-serif',
+    fontWeight: '800',
     textTransform: 'uppercase',
   };
 
   const titleStyle = {
-    fontSize: '1em',
+    fontSize: '1.05em',
     fontWeight: '600',
     color: 'rgb(72,72,72)',
   };
 
   const priceStyle = {
+    paddingTop: '3px',
+    paddingBottom: '1px',
+    // padding: '3px 0px',
     fontSize: '.9em',
-    fontFamily: 'Nunito Sans',
-    fontWeight: '500',
+    fontWeight: '400',
     color: 'rgb(72,72,72)',
   };
 
-  const reviewStyle = {
-    fontSize: '2em',
+  const reviewsStyle = {
+    fontSize: '.7em',
+    color: 'rgb(72,72,72)',
+  };
+
+  const stars = {
+    unicodeBidi: 'bidi-override',
+    color: 'rgb(216,216,216)',
+    fontSize: '1.1em',
+    display: 'inline-block',
+    position: 'relative',
+    padding: 0,
+  };
+
+  // const percent = (`${place.averageReview / 5}%`);
+  const percent = (`${80}%`);
+
+  const starsTop = {
+    color: 'rgb(3,132,137)',
+    padding: 0,
+    position: 'absolute',
+    zIndex: 1,
+    display: 'block',
+    top: 0,
+    left: 0,
+    overflow: 'hidden',
+    width: percent,
+  };
+
+  const starsBottom = {
+    padding: 0,
+    display: 'block',
+    zIndex: 0,
   };
 
   if (place) {
-    console.log(place);
     return (
-      <div>
+      <div style={placeDiv}>
         <img
           style={imageStyle}
           src={place.url}
@@ -58,8 +94,24 @@ const Place = (props) => {
         <div style={priceStyle}>
           {`$${place.price}/night`}
         </div>
-        <div style={reviewStyle}>
-          {`${place.totalReviews} , ${place.averageReview}`}
+        <div style={reviewsStyle}>
+          <span style={stars}>
+            <div style={starsTop}>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+            </div>
+            <div style={starsBottom}>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+            </div>
+          </span>
+          <span>{`${place.totalReviews}`}</span>
         </div>
       </div>
     );
