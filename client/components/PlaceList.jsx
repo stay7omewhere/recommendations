@@ -12,7 +12,6 @@ const PlaceList = (props) => {
     flexDirection: 'row',
   });
 
-
   return (
     <PlaceListDiv>
       {places.map((place, i) => {
