@@ -11,9 +11,27 @@ const PlaceList = (props) => {
     display: 'inline-flex',
     flexDirection: 'row',
   });
+
+
   return (
     <PlaceListDiv>
-      {places.map((place) => <Place key={place._id} place={place} />)}
+      {places.map((place, i) => {
+        let first = false;
+        let last = false;
+        if (i === 0) {
+          first = true;
+        } else if (i === places.length - 1) {
+          last = true;
+        }
+        return (
+          <Place
+            first={first}
+            last={last}
+            key={place._id}
+            place={place}
+          />
+        );
+      })}
     </PlaceListDiv>
   );
 };

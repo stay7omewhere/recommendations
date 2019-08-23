@@ -8,8 +8,9 @@ const Place = (props) => {
     place: undefined,
   };
 
-  const { place } = props;
-  let percent = '80%';
+  const { place, first, last } = props;
+
+  let percent = '100%';
   let color;
   if (place) {
     percent = (`${(place.averageReview / 5) * 100}%`);
@@ -17,14 +18,16 @@ const Place = (props) => {
   }
 
   const PlaceDiv = styled.div({
-    width: 316,
-    margin: '10px',
+    width: 333,
+    paddingRight: last ? '0px' : '8px',
+    paddingLeft: first ? '0px' : '8px',
   });
 
   const Image = styled.img`
     border-radius: 3px;
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 222;
+    object-fit: fill;
   `;
 
   const Property = styled.div({
@@ -121,7 +124,7 @@ const Place = (props) => {
               <span>★★★★★</span>
             </StarsBottom>
           </Stars>
-          <span>{`${place.totalReviews}`}</span>
+          <span>{` ${place.totalReviews}`}</span>
         </Review>
       </PlaceDiv>
     );
@@ -130,6 +133,8 @@ const Place = (props) => {
 };
 
 Place.propTypes = {
+  first: PropTypes.bool.isRequired,
+  last: PropTypes.bool.isRequired,
   place: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
