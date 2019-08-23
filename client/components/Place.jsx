@@ -1,5 +1,7 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const Place = (props) => {
   Place.defaultProps = {
@@ -14,54 +16,54 @@ const Place = (props) => {
     color = place.plusVerified ? 'rgb(145, 70, 105)' : undefined;
   }
 
-  const placeDiv = {
+  const PlaceDiv = styled.div({
     width: 316,
-    // padding: '5px 8px',
     margin: '10px',
-  };
-  const imageStyle = {
-    borderRadius: '3px',
-    maxWidth: '100%',
-    maxHeight: '100%',
-  };
+  });
 
-  const propertyStyle = {
+  const Image = styled.img`
+    border-radius: 3px;
+    max-width: 100%;
+    max-height: 100%;
+  `;
+
+  const Property = styled.div({
     paddingTop: '3px',
     fontSize: '.75em',
     color: color || 'rgb(118, 118, 118)',
     fontFamily: 'Nunito Sans, sans-serif',
     fontWeight: '800',
     textTransform: 'uppercase',
-  };
+  });
 
-  const titleStyle = {
+  const Title = styled.div({
     fontSize: '1.05em',
     fontWeight: '600',
     color: 'rgb(72,72,72)',
-  };
+  });
 
-  const priceStyle = {
+  const Price = styled.div({
     paddingTop: '3px',
     paddingBottom: '1px',
     fontSize: '.9em',
     fontWeight: '400',
     color: 'rgb(72,72,72)',
-  };
+  });
 
-  const reviewsStyle = {
+  const Review = styled.div({
     fontSize: '.7em',
     color: 'rgb(72,72,72)',
-  };
+  });
 
-  const stars = {
+  const Stars = styled.span({
     color: 'rgb(216,216,216)',
     fontSize: '1.1em',
     display: 'inline-block',
     position: 'relative',
     padding: 0,
-  };
+  });
 
-  const starsTop = {
+  const StarsTop = styled.div({
     color: color || 'rgb(3,132,137)',
     padding: 0,
     position: 'absolute',
@@ -71,15 +73,15 @@ const Place = (props) => {
     left: 0,
     overflow: 'hidden',
     width: percent,
-  };
+  });
 
-  const starsBottom = {
+  const StarsBottom = styled.div({
     padding: 0,
     display: 'block',
     zIndex: 0,
-  };
+  });
 
-  const plusVerifiedStyle = {
+  const PlusVerified = styled.span({
     padding: '1px 3px',
     marginRight: '4px',
     color: 'white',
@@ -87,12 +89,12 @@ const Place = (props) => {
     backgroundColor: color,
     borderRadius: '4px',
     backgroundClip: 'padding-box',
-  };
+  });
 
   const propertyRender = [];
   if (place) {
     if (place.plusVerified) {
-      propertyRender.push(<span key={place._id} style={plusVerifiedStyle}>PLUS</span>);
+      propertyRender.push(<PlusVerified key={place._id}>PLUS</PlusVerified>);
       propertyRender.push(<span key={place.propertyType}>Verified</span>);
     } else {
       propertyRender.push(<span key={place._id}>{place.propertyType}</span>);
@@ -101,39 +103,27 @@ const Place = (props) => {
 
   if (place) {
     return (
-      <div style={placeDiv}>
-        <img style={imageStyle} src={place.url} alt="" />
-        <div style={propertyStyle}>
+      <PlaceDiv>
+        <Image src={place.url} alt="" />
+        <Property>
           {propertyRender}
-          <span style={{ ariaHidden: true }}> · </span>
+          <span> · </span>
           {place.city}
-        </div>
-        <div style={titleStyle}>
-          {place.title}
-        </div>
-        <div style={priceStyle}>
-          {`$${place.price}/night`}
-        </div>
-        <div style={reviewsStyle}>
-          <span style={stars}>
-            <div style={starsTop}>
-              <span>★</span>
-              <span>★</span>
-              <span>★</span>
-              <span>★</span>
-              <span>★</span>
-            </div>
-            <div style={starsBottom}>
-              <span>★</span>
-              <span>★</span>
-              <span>★</span>
-              <span>★</span>
-              <span>★</span>
-            </div>
-          </span>
+        </Property>
+        <Title>{place.title}</Title>
+        <Price>{`$${place.price}/night`}</Price>
+        <Review>
+          <Stars>
+            <StarsTop>
+              <span>★★★★★</span>
+            </StarsTop>
+            <StarsBottom>
+              <span>★★★★★</span>
+            </StarsBottom>
+          </Stars>
           <span>{`${place.totalReviews}`}</span>
-        </div>
-      </div>
+        </Review>
+      </PlaceDiv>
     );
   }
   return null;

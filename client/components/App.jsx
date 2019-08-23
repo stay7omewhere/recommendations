@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import PlaceList from './PlaceList';
 
 class App extends React.Component {
@@ -19,19 +20,19 @@ class App extends React.Component {
   }
 
   render() {
-    const appStyle = {
+    const AppDiv = styled.div({
       WebkitFontSmoothing: 'antialiased',
       fontFamily: 'Montserrat, sans-serif',
       textSizeAdjust: '100%',
       lineHeight: '1.3em',
-    };
+    });
 
     const { places } = this.state;
 
     return (
-      <div style={appStyle}>
+      <AppDiv>
         <PlaceList places={places} />
-      </div>
+      </AppDiv>
     );
   }
 }
