@@ -7,6 +7,7 @@ import Place from '../client/components/Place';
 
 describe('Place Component', () => {
   const testPlace = {
+    _id: '1231sd5a1sd5a6sd1',
     averageReview: 4.931936565117398,
     city: 'North Carolanne',
     id: 1,
@@ -35,7 +36,7 @@ describe('Place Component', () => {
     const wrapper = shallow(<Place place={testPlace} />);
     expect(wrapper.containsMatchingElement(
       <div>
-        ut aut ut
+        <span>ut aut ut</span>
         <span> · </span>
         North Carolanne
       </div>,
