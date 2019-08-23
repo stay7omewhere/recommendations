@@ -11,7 +11,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios('/places').then((response) => {
+    axios('/api/nearbyPlaces/1').then((response) => {
       this.setState({
         places: response.data,
       });
