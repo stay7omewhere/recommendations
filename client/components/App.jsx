@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Place from './Place';
+import PlaceList from './PlaceList';
 
 class App extends React.Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class App extends React.Component {
 
     return (
       <div style={appStyle}>
-        <Place place={places[3]} />
+        <PlaceList places={places} />
       </div>
     );
   }

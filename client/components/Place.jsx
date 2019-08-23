@@ -16,8 +16,11 @@ const Place = (props) => {
 
   const placeDiv = {
     width: 316,
+    // padding: '5px 8px',
+    margin: '10px',
   };
   const imageStyle = {
+    borderRadius: '3px',
     maxWidth: '100%',
     maxHeight: '100%',
   };
