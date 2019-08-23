@@ -18,7 +18,8 @@
     "build": "npx webpack",
     "start:dev": "nodemon ./server/server.js",
     "start": "node ./server/server.js",
-    "seed": "node ./database/seed.js"
+    "seed": "node ./database/seed.js",
+    "test": "npx jest --watch"
   },
   "dependencies": {
     "axios": "^0.19.0",
