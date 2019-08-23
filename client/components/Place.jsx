@@ -6,6 +6,8 @@ import styled from 'styled-components';
 const Place = (props) => {
   Place.defaultProps = {
     place: undefined,
+    first: false,
+    last: false,
   };
 
   const { place, first, last } = props;
@@ -22,6 +24,7 @@ const Place = (props) => {
     paddingRight: last ? '0px' : '8px',
     paddingLeft: first ? '0px' : '8px',
   });
+  PlaceDiv.displayName = 'PlaceDiv';
 
   const Image = styled.img`
     border-radius: 3px;
@@ -29,6 +32,7 @@ const Place = (props) => {
     height: 222;
     object-fit: fill;
   `;
+  Image.displayName = 'Image';
 
   const Property = styled.div({
     paddingTop: '3px',
@@ -38,12 +42,14 @@ const Place = (props) => {
     fontWeight: '800',
     textTransform: 'uppercase',
   });
+  Property.displayName = 'Property';
 
   const Title = styled.div({
     fontSize: '1.05em',
     fontWeight: '600',
     color: 'rgb(72,72,72)',
   });
+  Title.displayName = 'Title';
 
   const Price = styled.div({
     paddingTop: '3px',
@@ -52,11 +58,13 @@ const Place = (props) => {
     fontWeight: '400',
     color: 'rgb(72,72,72)',
   });
+  Price.displayName = 'Price';
 
   const Review = styled.div({
     fontSize: '.7em',
     color: 'rgb(72,72,72)',
   });
+  Review.displayName = 'Review';
 
   const Stars = styled.span({
     color: 'rgb(216,216,216)',
@@ -65,6 +73,7 @@ const Place = (props) => {
     position: 'relative',
     padding: 0,
   });
+  Stars.displayName = 'Stars';
 
   const StarsTop = styled.div({
     color: color || 'rgb(3,132,137)',
@@ -93,6 +102,7 @@ const Place = (props) => {
     borderRadius: '4px',
     backgroundClip: 'padding-box',
   });
+  PlusVerified.displayName = 'PlusVerified';
 
   const propertyRender = [];
   if (place) {
@@ -133,8 +143,8 @@ const Place = (props) => {
 };
 
 Place.propTypes = {
-  first: PropTypes.bool.isRequired,
-  last: PropTypes.bool.isRequired,
+  first: PropTypes.bool,
+  last: PropTypes.bool,
   place: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
