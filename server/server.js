@@ -22,6 +22,13 @@ app.get('/api/nearbyPlaces/:id', (req, res) => {
     });
 });
 
+app.get('/api/savedlist', (req, res) => {
+  db.SavedList.find().exec().then((result) => {
+    // const savedList = result.map((list) => list.name)
+    res.send(result);
+  });
+});
+
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`Listening to port ${[port]}`);
