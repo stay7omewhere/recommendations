@@ -47,7 +47,7 @@ model.db.once('open', () => {
         propertyType: faker.lorem.words(),
         price: Math.floor(Math.random() * 200 + 100),
         averageReview: Math.random() + 4,
-        totalReview: Math.floor(Math.random() * 100 + 100),
+        totalReviews: Math.floor(Math.random() * 100 + 100),
         savedList,
       };
       newPlaces.push(newPlace);
