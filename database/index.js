@@ -14,22 +14,12 @@ const placeSchema = new mongoose.Schema({
   plusVerified: Boolean,
   propertyType: String,
   price: Number,
-  reviews: [Number],
+  averageReview: Number,
+  totalReviews: Number,
   savedList: [String],
 });
 
 const Place = mongoose.model('Places', placeSchema);
-
-const activitySchema = new mongoose.Schema({
-  url: String,
-  title: String,
-  category: String,
-  price: Number,
-  reviews: [Number],
-  savedList: [String],
-});
-
-const Activity = mongoose.model('Activity', activitySchema);
 
 const savedListSchema = new mongoose.Schema({
   name: String,
@@ -41,5 +31,4 @@ module.exports = {
   db,
   SavedList,
   Place,
-  Activity,
 };
