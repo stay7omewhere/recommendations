@@ -8,7 +8,9 @@
     "node": ">=6.13.0"
   },
   "jest": {
-    "setupFilesAfterEnv": ["<rootDir>/config/testSetup.js"]
+    "setupFilesAfterEnv": [
+      "<rootDir>/config/testSetup.js"
+    ]
   },
   "private": true,
   "scripts": {
