@@ -7,6 +7,13 @@ const Place = (props) => {
   };
 
   const { place } = props;
+  let percent = '80%';
+  let color;
+  if (place) {
+    percent = (`${(place.averageReview / 5) * 100}%`);
+    color = place.plusVerified ? 'rgb(145, 70, 105)' : undefined;
+  }
+
   const placeDiv = {
     width: 316,
   };
@@ -16,8 +23,9 @@ const Place = (props) => {
   };
 
   const propertyStyle = {
+    paddingTop: '3px',
     fontSize: '.75em',
-    color: 'rgb(118, 118, 118)',
+    color: color || 'rgb(118, 118, 118)',
     fontFamily: 'Nunito Sans, sans-serif',
     fontWeight: '800',
     textTransform: 'uppercase',
@@ -32,7 +40,6 @@ const Place = (props) => {
   const priceStyle = {
     paddingTop: '3px',
     paddingBottom: '1px',
-    // padding: '3px 0px',
     fontSize: '.9em',
     fontWeight: '400',
     color: 'rgb(72,72,72)',
@@ -44,7 +51,6 @@ const Place = (props) => {
   };
 
   const stars = {
-    unicodeBidi: 'bidi-override',
     color: 'rgb(216,216,216)',
     fontSize: '1.1em',
     display: 'inline-block',
@@ -52,11 +58,8 @@ const Place = (props) => {
     padding: 0,
   };
 
-  // const percent = (`${place.averageReview / 5}%`);
-  const percent = (`${80}%`);
-
   const starsTop = {
-    color: 'rgb(3,132,137)',
+    color: color || 'rgb(3,132,137)',
     padding: 0,
     position: 'absolute',
     zIndex: 1,
@@ -73,18 +76,32 @@ const Place = (props) => {
     zIndex: 0,
   };
 
+  const plusVerifiedStyle = {
+    padding: '1px 3px',
+    marginRight: '4px',
+    color: 'white',
+    display: color ? 'show' : 'none',
+    backgroundColor: color,
+    borderRadius: '4px',
+    backgroundClip: 'padding-box',
+  };
+
+  const propertyRender = [];
+  if (place) {
+    if (place.plusVerified) {
+      propertyRender.push(<span key={place._id} style={plusVerifiedStyle}>PLUS</span>);
+      propertyRender.push(<span key={place.propertyType}>Verified</span>);
+    } else {
+      propertyRender.push(<span key={place._id}>{place.propertyType}</span>);
+    }
+  }
+
   if (place) {
     return (
       <div style={placeDiv}>
-        <img
-          style={imageStyle}
-          src={place.url}
-          alt=""
-        />
-        <div
-          style={propertyStyle}
-        >
-          {place.propertyType}
+        <img style={imageStyle} src={place.url} alt="" />
+        <div style={propertyStyle}>
+          {propertyRender}
           <span style={{ ariaHidden: true }}> · </span>
           {place.city}
         </div>
@@ -121,7 +138,9 @@ const Place = (props) => {
 
 Place.propTypes = {
   place: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
+    plusVerified: PropTypes.bool.isRequired,
     propertyType: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,
