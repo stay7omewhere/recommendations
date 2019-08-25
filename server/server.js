@@ -1,8 +1,8 @@
 const express = require('express');
-const db = require('../database/index');
+const model = require('../database/index');
 // const path = require('path');
 
-const port = 3000;
+const port = 3004;
 const app = express();
 
 app.use(require('morgan')('dev'));
@@ -15,16 +15,13 @@ app.use(express.static(`${__dirname}./../public`));
 app.get('/api/nearbyPlaces/:id', (req, res) => {
   // ranges from 8 - 13
   const randomAmount = Math.floor(Math.random() * 6 + 8);
-  const randomSkip = Math.floor(Math.random() * 101);
-  db.Place.find().skip(randomSkip).limit(randomAmount).exec()
-    .then((result) => {
-      res.send(result);
-    });
+  model.Place.aggregate([{ $sample: { size: randomAmount } }]).then((result) => {
+    res.send(result);
+  });
 });
 
 app.get('/api/savedlist', (req, res) => {
-  db.SavedList.find().exec().then((result) => {
-    // const savedList = result.map((list) => list.name)
+  model.SavedList.find().exec().then((result) => {
     res.send(result);
   });
 });
