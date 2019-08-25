@@ -9,12 +9,4 @@ WebFont.load({
   },
 });
 
-const appStyle = {
-  webkitFontSmoothing: 'antialiased',
-  fontFamily: 'Montserrat, sans-serif',
-  color: 'rgb(118, 118, 118)',
-  textTransform: 'uppercase',
-  textSizeAdjustment: '100%',
-};
-
-ReactDOM.render(<App style={appStyle} />, document.querySelector('#app'));
+ReactDOM.render(<App />, document.querySelector('#app'));
