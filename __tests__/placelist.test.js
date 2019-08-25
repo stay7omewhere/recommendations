@@ -106,7 +106,9 @@ describe('PlaceList Component', () => {
 
   it('should change start and end state when limits are reached', () => {
     expect(wrapperBig.state('start')).toBe(true);
+    expect(wrapperBig.state('end')).toBe(false);
     wrapperBig.find({ name: 'next' }).simulate('click');
+    expect(wrapperBig.state('start')).toBe(false);
     expect(wrapperBig.state('end')).toBe(true);
     wrapperBig.find({ name: 'prev' }).simulate('click');
     expect(wrapperBig.state('start')).toBe(true);
