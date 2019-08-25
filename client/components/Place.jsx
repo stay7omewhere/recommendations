@@ -3,6 +3,96 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+const PlaceDiv = styled.div`
+  width: 333;
+  padding-right: ${(props) => (props.last ? '0px' : '8px')};
+  padding-left: ${(props) => (props.first ? '0px' : '8px')};
+  :hover {
+    cursor: pointer;
+  }
+`;
+PlaceDiv.displayName = 'PlaceDiv';
+
+const Image = styled.img`
+  border-radius: 3px;
+  width: 100%;
+  height: 222;
+  object-fit: fill;
+`;
+Image.displayName = 'Image';
+
+const Property = styled.div({
+  paddingTop: '6px',
+  fontSize: '.75em',
+  color: (props) => (props.color ? props.color : 'rgb(118,118,118)'),
+  fontWeight: '700',
+  textTransform: 'uppercase',
+});
+Property.displayName = 'Property';
+
+const Title = styled.div({
+  fontSize: '1.05em',
+  fontWeight: '600',
+  color: 'rgb(72,72,72)',
+});
+Title.displayName = 'Title';
+
+const Price = styled.div({
+  paddingTop: '3px',
+  paddingBottom: '1px',
+  fontSize: '.9em',
+  fontWeight: '400',
+  color: 'rgb(72,72,72)',
+});
+Price.displayName = 'Price';
+
+const Review = styled.div({
+  fontSize: '.7em',
+  color: 'rgb(72,72,72)',
+});
+Review.displayName = 'Review';
+
+const Stars = styled.span({
+  color: 'rgb(216,216,216)',
+  fontSize: '1.1em',
+  display: 'inline-block',
+  position: 'relative',
+  padding: 0,
+});
+Stars.displayName = 'Stars';
+
+const StarsTop = styled.div({
+  color: (props) => (props.color ? props.color : 'rgb(3,132,137)'),
+  padding: 0,
+  position: 'absolute',
+  zIndex: 1,
+  display: 'block',
+  top: 0,
+  left: 0,
+  overflow: 'hidden',
+  width: (props) => props.percent,
+});
+StarsTop.displayName = 'StarsTop';
+
+const StarsBottom = styled.div({
+  padding: 0,
+  display: 'block',
+  zIndex: 0,
+});
+StarsBottom.displayName = 'StarsBottom';
+
+const PlusVerified = styled.span({
+  padding: '2px 4px',
+  marginRight: '4px',
+  color: 'white',
+  display: (props) => (props.color ? 'show' : 'none'),
+  backgroundColor: (props) => props.color,
+  borderRadius: '4px',
+  backgroundClip: 'padding-box',
+});
+PlusVerified.displayName = 'PlusVerified';
+
+
 const Place = (props) => {
   Place.defaultProps = {
     place: undefined,
@@ -19,95 +109,10 @@ const Place = (props) => {
     color = place.plusVerified ? 'rgb(145, 70, 105)' : undefined;
   }
 
-  const PlaceDiv = styled.div({
-    width: 333,
-    paddingRight: last ? '0px' : '8px',
-    paddingLeft: first ? '0px' : '8px',
-  });
-  PlaceDiv.displayName = 'PlaceDiv';
-
-  const Image = styled.img`
-    border-radius: 3px;
-    width: 100%;
-    height: 222;
-    object-fit: fill;
-  `;
-  Image.displayName = 'Image';
-
-  const Property = styled.div({
-    paddingTop: '3px',
-    fontSize: '.75em',
-    color: color || 'rgb(118, 118, 118)',
-    fontFamily: 'Nunito Sans, sans-serif',
-    fontWeight: '800',
-    textTransform: 'uppercase',
-  });
-  Property.displayName = 'Property';
-
-  const Title = styled.div({
-    fontSize: '1.05em',
-    fontWeight: '600',
-    color: 'rgb(72,72,72)',
-  });
-  Title.displayName = 'Title';
-
-  const Price = styled.div({
-    paddingTop: '3px',
-    paddingBottom: '1px',
-    fontSize: '.9em',
-    fontWeight: '400',
-    color: 'rgb(72,72,72)',
-  });
-  Price.displayName = 'Price';
-
-  const Review = styled.div({
-    fontSize: '.7em',
-    color: 'rgb(72,72,72)',
-  });
-  Review.displayName = 'Review';
-
-  const Stars = styled.span({
-    color: 'rgb(216,216,216)',
-    fontSize: '1.1em',
-    display: 'inline-block',
-    position: 'relative',
-    padding: 0,
-  });
-  Stars.displayName = 'Stars';
-
-  const StarsTop = styled.div({
-    color: color || 'rgb(3,132,137)',
-    padding: 0,
-    position: 'absolute',
-    zIndex: 1,
-    display: 'block',
-    top: 0,
-    left: 0,
-    overflow: 'hidden',
-    width: percent,
-  });
-
-  const StarsBottom = styled.div({
-    padding: 0,
-    display: 'block',
-    zIndex: 0,
-  });
-
-  const PlusVerified = styled.span({
-    padding: '1px 3px',
-    marginRight: '4px',
-    color: 'white',
-    display: color ? 'show' : 'none',
-    backgroundColor: color,
-    borderRadius: '4px',
-    backgroundClip: 'padding-box',
-  });
-  PlusVerified.displayName = 'PlusVerified';
-
   const propertyRender = [];
   if (place) {
     if (place.plusVerified) {
-      propertyRender.push(<PlusVerified key={place._id}>PLUS</PlusVerified>);
+      propertyRender.push(<PlusVerified color={color} key={place._id}>PLUS</PlusVerified>);
       propertyRender.push(<span key={place.propertyType}>Verified</span>);
     } else {
       propertyRender.push(<span key={place._id}>{place.propertyType}</span>);
@@ -116,9 +121,9 @@ const Place = (props) => {
 
   if (place) {
     return (
-      <PlaceDiv>
+      <PlaceDiv first={first} last={last}>
         <Image src={place.url} alt="" />
-        <Property>
+        <Property color={color}>
           {propertyRender}
           <span> · </span>
           {place.city}
@@ -127,7 +132,7 @@ const Place = (props) => {
         <Price>{`$${place.price}/night`}</Price>
         <Review>
           <Stars>
-            <StarsTop>
+            <StarsTop color={color} percent={percent}>
               <span>★★★★★</span>
             </StarsTop>
             <StarsBottom>
