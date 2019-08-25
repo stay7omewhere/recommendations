@@ -34,21 +34,6 @@ const ButtonWrapper = styled.div`
 `;
 ButtonWrapper.displayName = 'ButtonWrapper';
 
-const SliderButton = styled.button`
-  background-color: white;
-  color: rgb(118, 118, 118);
-  border: 0;
-  font-size: 2em;
-  font-family: Montserrat, sans-serif;
-  :focus {
-    outline: 0;
-  }
-  :hover {
-    cursor: pointer;
-  }
-`;
-SliderButton.displayName = 'SliderButton';
-
 const Arrow = styled.svg`
   height: 22px; 
   width: 22px; 
@@ -61,6 +46,7 @@ const Arrow = styled.svg`
   }
   display: ${(props) => (props.limit ? 'none' : 'show')}
 `;
+Arrow.displayName = 'Arrow';
 
 
 class PlaceList extends React.Component {
@@ -68,7 +54,7 @@ class PlaceList extends React.Component {
     super(props);
     this.state = {
       index: 0,
-      end: false,
+      end: props.places.length <= 3,
       start: true,
     };
     this.prev = this.prev.bind(this);
@@ -114,7 +100,7 @@ class PlaceList extends React.Component {
     return (
       <PlaceListDiv>
         <ButtonWrapper>
-          <Arrow onClick={prev} viewBox="0 0 18 18" limit={start}>
+          <Arrow name="prev" onClick={prev} viewBox="0 0 18 18" limit={start}>
             <path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z" fillRule="evenodd" />
           </Arrow>
         </ButtonWrapper>
@@ -140,7 +126,7 @@ class PlaceList extends React.Component {
           </InnerDiv>
         </OuterDiv>
         <ButtonWrapper>
-          <Arrow onClick={next} viewBox="0 0 18 18" limit={end}>
+          <Arrow name="next" onClick={next} viewBox="0 0 18 18" limit={end}>
             <path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fillRule="evenodd" />
           </Arrow>
         </ButtonWrapper>
