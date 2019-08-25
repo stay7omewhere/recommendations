@@ -112,8 +112,8 @@ const Place = (props) => {
   const propertyRender = [];
   if (place) {
     if (place.plusVerified) {
-      propertyRender.push(<PlusVerified color={color} key={place._id}>PLUS</PlusVerified>);
-      propertyRender.push(<span key={place.propertyType}>Verified</span>);
+      propertyRender.push(<PlusVerified color={color} key={place.plusVerified}>PLUS</PlusVerified>);
+      propertyRender.push(<span key={place._id}>Verified</span>);
     } else {
       propertyRender.push(<span key={place._id}>{place.propertyType}</span>);
     }
