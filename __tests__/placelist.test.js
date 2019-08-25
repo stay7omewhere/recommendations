@@ -60,7 +60,29 @@ describe('PlaceList Component', () => {
       __v: 0,
     },
   ];
+
+  const biggerTestPlaceList = [...testPlaceList, {
+    savedList: [
+      'pariatur',
+      'maxime',
+      'molestiae',
+      'officia',
+    ],
+    _id: '5d5f783caebb1242a4744559',
+    id: 59,
+    url: 'https://mock-property-images.s3-us-west-1.amazonaws.com/houses/house-59.jpeg',
+    title: 'Ea quo eveniet nihil impedit qui cumque.',
+    city: 'Port Buddyberg',
+    plusVerified: true,
+    propertyType: 'officia ex ad',
+    price: 234,
+    averageReview: 4.392379782123551,
+    totalReviews: 146,
+    __v: 0,
+  }];
+
   const wrapper = shallow(<PlaceList places={testPlaceList} />);
+  const wrapperBig = shallow(<PlaceList places={biggerTestPlaceList} />);
 
   it('should dynamically render multiple places', () => {
     expect(wrapper.children().length).toBe(3);
@@ -68,5 +90,25 @@ describe('PlaceList Component', () => {
 
   it('should render the Place component', () => {
     expect(wrapper.find('Place').exists());
+  });
+
+  it('should have correct initial states', () => {
+    expect(wrapper.state()).toEqual({ index: 0, end: true, start: true });
+    expect(wrapperBig.state()).toEqual({ index: 0, end: false, start: true });
+  });
+
+  it('should change index accordingly on click', () => {
+    wrapper.find({ name: 'next' }).simulate('click');
+    expect(wrapper.state('index')).toEqual(1);
+    wrapper.find({ name: 'prev' }).simulate('click');
+    expect(wrapper.state('index')).toEqual(0);
+  });
+
+  it('should change start and end state when limits are reached', () => {
+    expect(wrapperBig.state('start')).toBe(true);
+    wrapperBig.find({ name: 'next' }).simulate('click');
+    expect(wrapperBig.state('end')).toBe(true);
+    wrapperBig.find({ name: 'prev' }).simulate('click');
+    expect(wrapperBig.state('start')).toBe(true);
   });
 });
