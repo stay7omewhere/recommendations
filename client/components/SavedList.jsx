@@ -64,6 +64,13 @@ const NewList = styled.div`
 `;
 NewList.displayName = 'NewList';
 
+const NewListText = styled.span`
+:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+`;
+
 const StyledList = styled.div`
   display: inline-flex;
   flex-direction: column;
@@ -84,9 +91,14 @@ const SavedList = (props) => {
       return <SavedListEntry key={list._id} favorited={favorited} listName={list.name} />;
     });
   }
+  const handleClick = (e) => {
+    if (e.target.id === 'StyledSavedList') {
+      closeList();
+    }
+  };
 
   return (
-    <StyledSavedList currentPlace={currentPlace}>
+    <StyledSavedList id="StyledSavedList" currentPlace={currentPlace} onClick={handleClick}>
       <MainForm>
         <ExitButton onClick={closeList}>
           <Exit viewBox="0 0 24 24" focusable="false">
@@ -97,7 +109,9 @@ const SavedList = (props) => {
           Save to list
         </SavedListTitle>
         <NewList>
-          Create New List
+          <NewListText>
+            Create New List
+          </NewListText>
         </NewList>
         <StyledList>
           {renderSavedList}
