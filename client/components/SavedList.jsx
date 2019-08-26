@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -74,18 +75,18 @@ StyledList.displayName = 'StyledList';
 const SavedList = (props) => {
   const { currentPlace, savedList, closeList } = props;
   let renderSavedList = null;
-  if (Object.keys(currentPlace).length) {
+  if (Object.keys(currentPlace).length && savedList.length) {
     renderSavedList = savedList.map((list) => {
       let favorited = false;
       if (currentPlace.savedList.includes(list.name)) {
         favorited = true;
       }
-      return <SavedListEntry favorited={favorited} listName={list.name} />;
+      return <SavedListEntry key={list._id} favorited={favorited} listName={list.name} />;
     });
   }
 
   return (
-    <StyledSavedList tabIndex="0" currentPlace={currentPlace}>
+    <StyledSavedList currentPlace={currentPlace}>
       <MainForm>
         <ExitButton onClick={closeList}>
           <Exit viewBox="0 0 24 24" focusable="false">
@@ -120,6 +121,7 @@ SavedList.propTypes = {
     savedList: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   }).isRequired,
   savedList: PropTypes.arrayOf(PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   })).isRequired,
   closeList: PropTypes.func.isRequired,
