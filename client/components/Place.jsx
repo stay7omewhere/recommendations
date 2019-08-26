@@ -2,11 +2,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Heart from './Heart';
 
 const PlaceDiv = styled.div`
   width: 333;
   padding-right: ${(props) => (props.last ? '0px' : '8px')};
   padding-left: ${(props) => (props.first ? '0px' : '8px')};
+  position: relative;
   :hover {
     cursor: pointer;
   }
@@ -18,11 +20,13 @@ const Image = styled.img`
   width: 100%;
   height: 222;
   object-fit: fill;
+  user-select: none;
 `;
 Image.displayName = 'Image';
 
 const Property = styled.div({
-  paddingTop: '6px',
+  paddingTop: '8px',
+  paddingBottom: '2px',
   fontSize: '.75em',
   color: (props) => (props.color ? props.color : 'rgb(118,118,118)'),
   fontWeight: '700',
@@ -100,7 +104,9 @@ const Place = (props) => {
     last: false,
   };
 
-  const { place, first, last } = props;
+  const {
+    place, first, last, savedList,
+  } = props;
 
   let percent = '100%';
   let color;
@@ -122,6 +128,7 @@ const Place = (props) => {
   if (place) {
     return (
       <PlaceDiv first={first} last={last}>
+        <Heart savedList={savedList} listingSavedList={place.savedList} />
         <Image src={place.url} alt="" />
         <Property color={color}>
           {propertyRender}
@@ -148,6 +155,9 @@ const Place = (props) => {
 };
 
 Place.propTypes = {
+  savedList: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  })).isRequired,
   first: PropTypes.bool,
   last: PropTypes.bool,
   place: PropTypes.shape({
@@ -160,6 +170,7 @@ Place.propTypes = {
     price: PropTypes.number.isRequired,
     totalReviews: PropTypes.number.isRequired,
     averageReview: PropTypes.number.isRequired,
+    savedList: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   }),
 };
 
