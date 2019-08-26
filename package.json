@@ -18,7 +18,8 @@
     "build": "npx webpack",
     "start:dev": "nodemon ./server/server.js",
     "start": "node ./server/server.js",
-    "seed": "node ./database/seed.js"
+    "seed": "node ./database/seed.js",
+    "test": "npx jest --watch"
   },
   "dependencies": {
     "axios": "^0.19.0",
@@ -29,6 +30,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "styled-components": "^4.3.2",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
