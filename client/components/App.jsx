@@ -3,61 +3,45 @@ import axios from 'axios';
 import styled from 'styled-components';
 import PlaceList from './PlaceList';
 
+const AppDiv = styled.div`
+  -webkit-font-smoothing: antialiased;
+  font-family: Montserrat, sans-serif;
+  line-height: 1.3em;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+
+const StyledTitle = styled.h1`
+  padding: 15px 42px;
+  width: 1031px;
+  color: rgb(72, 72, 72);
+  font-size: 1.5em;
+`;
+
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.places = [];
     this.state = {
       places: [],
-      index: 0,
     };
-    this.nextPlace = this.nextPlace.bind(this);
-    this.prevPlace = this.prevPlace.bind(this);
   }
 
   componentDidMount() {
     axios('/api/nearbyPlaces/1').then((response) => {
       this.places = response.data;
       this.setState({
-        places: response.data.slice(0, 3),
+        places: response.data,
       });
     });
   }
 
-  nextPlace() {
-    this.setState((state) => {
-      const index = state.index + 1;
-      const places = this.places.slice(index, index + 3);
-      return {
-        index,
-        places,
-      };
-    });
-  }
-
-  prevPlace() {
-    this.setState((state) => {
-      const index = state.index - 1;
-      const places = this.places.slice(index, index + 3);
-      return {
-        index,
-        places,
-      };
-    });
-  }
-
   render() {
-    const AppDiv = styled.div({
-      WebkitFontSmoothing: 'antialiased',
-      fontFamily: 'Montserrat, sans-serif',
-      textSizeAdjust: '100%',
-      lineHeight: '1.3em',
-    });
-
     const { places } = this.state;
-
     return (
       <AppDiv>
+        <StyledTitle>More places to stay</StyledTitle>
         <PlaceList places={places} />
       </AppDiv>
     );
