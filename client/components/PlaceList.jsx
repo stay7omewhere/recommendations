@@ -31,6 +31,7 @@ const ButtonWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 0px 10px;
+  user-select: none;
 `;
 ButtonWrapper.displayName = 'ButtonWrapper';
 
@@ -97,7 +98,7 @@ class PlaceList extends React.Component {
   }
 
   render() {
-    const { places } = this.props;
+    const { places, savedList } = this.props;
     const { index, start, end } = this.state;
     const { next, prev } = this;
 
@@ -119,12 +120,7 @@ class PlaceList extends React.Component {
                 last = true;
               }
               return (
-                <Place
-                  first={first}
-                  last={last}
-                  key={place._id}
-                  place={place}
-                />
+                <Place savedList={savedList} first={first} last={last} key={place._id} place={place} />
               );
             })}
           </InnerDiv>
@@ -140,6 +136,9 @@ class PlaceList extends React.Component {
 }
 
 PlaceList.propTypes = {
+  savedList: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  })).isRequired,
   places: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,

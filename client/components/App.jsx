@@ -25,24 +25,28 @@ class App extends React.Component {
     super(props);
     this.state = {
       places: [],
+      savedList: [],
     };
   }
 
   componentDidMount() {
-    axios('/api/nearbyPlaces/1').then((response) => {
-      this.places = response.data;
-      this.setState({
-        places: response.data,
+    axios('/api/nearbyPlaces/1').then((response) => response.data).then((places) => {
+      axios('/api/savedList').then((reponse) => {
+        const savedList = reponse.data;
+        this.setState({
+          places,
+          savedList,
+        });
       });
     });
   }
 
   render() {
-    const { places } = this.state;
+    const { places, savedList } = this.state;
     return (
       <AppDiv>
         <StyledTitle>More places to stay</StyledTitle>
-        <PlaceList places={places} />
+        <PlaceList savedList={savedList} places={places} />
       </AppDiv>
     );
   }
