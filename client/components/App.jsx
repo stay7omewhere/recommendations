@@ -14,6 +14,7 @@ const AppDiv = styled.div`
   width: 100%;
   height: 100%;
 `;
+AppDiv.displayName = 'AppDiv';
 
 const StyledTitle = styled.h1`
   padding: 15px 42px;
@@ -21,6 +22,7 @@ const StyledTitle = styled.h1`
   color: rgb(72, 72, 72);
   font-size: 1.5em;
 `;
+StyledTitle.displayName = 'StyledTitle';
 
 class App extends React.Component {
   constructor(props) {

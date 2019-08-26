@@ -10,6 +10,8 @@ const ListEntry = styled.div`
   display: inline-flex;
   justify-content: space-between;
 `;
+ListEntry.displayName = 'ListEntry';
+
 
 const SavedListEntry = (props) => {
   const { listName, favorited } = props;

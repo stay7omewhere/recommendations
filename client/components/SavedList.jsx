@@ -15,6 +15,7 @@ const StyledSavedList = styled.div`
   justify-content: center;
   align-items: center;
 `;
+StyledSavedList.displayName = 'StyledSavedList';
 
 const MainForm = styled.div`
   box-sizing: border-box;
@@ -24,6 +25,7 @@ const MainForm = styled.div`
   width: 568px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 10px 0px;
 `;
+MainForm.displayName = 'MainForm';
 
 const Exit = styled.svg`
   height: 16px; 
@@ -32,6 +34,7 @@ const Exit = styled.svg`
   fill: rgb(118, 118, 118);
   user-select: none;
 `;
+Exit.displayName = 'Exit';
 
 const ExitButton = styled.button`
   display: inline-block;
@@ -41,8 +44,9 @@ const ExitButton = styled.button`
   padding: 8px 8px;
   margin: -8px;
 `;
+ExitButton.displayName = 'ExitButton';
 
-const Title = styled.h1`
+const SavedListTitle = styled.h1`
   color: #484848;
   font-size: 1.5em;
   font-family: Nunito Sans, san-serff;
@@ -50,18 +54,21 @@ const Title = styled.h1`
   padding-top: 20px
   padding-bottom: 5px;
 `;
+SavedListTitle.displayName = 'SavedListTitle';
 
 const NewList = styled.div`
   padding: 24px 0px;
   color: #008489;
   font-weight: 600;
 `;
+NewList.displayName = 'NewList';
 
 const StyledList = styled.div`
   display: inline-flex;
   flex-direction: column;
   width: 100%;
 `;
+StyledList.displayName = 'StyledList';
 
 
 const SavedList = (props) => {
@@ -85,9 +92,9 @@ const SavedList = (props) => {
             <path d="m23.25 24c-.19 0-.38-.07-.53-.22l-10.72-10.72-10.72 10.72c-.29.29-.77.29-1.06 0s-.29-.77 0-1.06l10.72-10.72-10.72-10.72c-.29-.29-.29-.77 0-1.06s.77-.29 1.06 0l10.72 10.72 10.72-10.72c.29-.29.77-.29 1.06 0s .29.77 0 1.06l-10.72 10.72 10.72 10.72c.29.29.29.77 0 1.06-.15.15-.34.22-.53.22" fillRule="evenodd" />
           </Exit>
         </ExitButton>
-        <Title>
+        <SavedListTitle>
           Save to list
-        </Title>
+        </SavedListTitle>
         <NewList>
           Create New List
         </NewList>

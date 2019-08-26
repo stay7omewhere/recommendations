@@ -18,6 +18,7 @@ const StyledHeart = styled.svg`
   }
   user-select: none;
 `;
+StyledHeart.displayName = 'StyledHeart';
 
 const Heart = (props) => {
   const { heartStyle } = props;

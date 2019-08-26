@@ -33,8 +33,8 @@ describe('Place Component', () => {
     totalReviews: 149,
     url: 'test.jpeg',
   };
-  const wrapperVerified = shallow(<Place place={verifiedTestPlace} />);
-  const wrapper = shallow(<Place place={testPlace} />);
+  const wrapperVerified = shallow(<Place place={verifiedTestPlace} renderList={() => {}}/>);
+  const wrapper = shallow(<Place place={testPlace} renderList={() => {}}/>);
 
   it('should render a picture', () => {
     expect(wrapper.find('Image').prop('src')).toBe('test.jpeg');
