@@ -102,6 +102,7 @@ const HeartWrapper = styled.div`
   right: 15px;
   top: 8px;
 `;
+HeartWrapper.displayName = 'HeartWrapper';
 
 
 const Place = (props) => {
