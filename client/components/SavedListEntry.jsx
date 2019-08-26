@@ -4,13 +4,24 @@ import PropTypes from 'prop-types';
 import Heart from './Heart';
 
 const ListEntry = styled.div`
-  padding: 24px 0px;
-  border-top: 1px solid rgba(0, 0, 0, .1);
+  padding 16px 0px;
+  outline-offset: 8px;
   color: rgb(72, 72, 72);
   display: inline-flex;
   justify-content: space-between;
+  :hover {
+    cursor: pointer;
+  }
+  width: 100%;
 `;
 ListEntry.displayName = 'ListEntry';
+
+const Divider = styled.div`
+  height: 1px;
+  width: 100%;
+  background: rgb(0, 0, 0, 0.1);
+  margin: 8px 0px;
+`;
 
 
 const SavedListEntry = (props) => {
@@ -24,10 +35,13 @@ const SavedListEntry = (props) => {
   };
 
   return (
-    <ListEntry>
-      {listName}
-      <Heart heartStyle={heartStyle} />
-    </ListEntry>
+    <div>
+      <Divider />
+      <ListEntry>
+        {listName}
+        <Heart heartStyle={heartStyle} />
+      </ListEntry>
+    </div>
   );
 };
 
