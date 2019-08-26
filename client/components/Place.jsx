@@ -96,6 +96,13 @@ const PlusVerified = styled.span({
 });
 PlusVerified.displayName = 'PlusVerified';
 
+const HeartWrapper = styled.div`
+  position: absolute;
+  z-index: 1;
+  right: 15px;
+  top: 8px;
+`;
+
 
 const Place = (props) => {
   Place.defaultProps = {
@@ -105,7 +112,7 @@ const Place = (props) => {
   };
 
   const {
-    place, first, last, savedList,
+    place, first, last, renderList,
   } = props;
 
   let percent = '100%';
@@ -125,10 +132,20 @@ const Place = (props) => {
     }
   }
 
+  const favorited = !!place.savedList.length;
+  const heartStyle = {
+    fill: favorited ? 'rgb(255, 90, 95)' : 'rgb(72, 72, 72)',
+    fillOpacity: favorited ? '1' : '0.5',
+    stroke: '#fff',
+    size: '28px',
+  };
+
   if (place) {
     return (
       <PlaceDiv first={first} last={last}>
-        <Heart savedList={savedList} listingSavedList={place.savedList} />
+        <HeartWrapper onClick={() => renderList(place)}>
+          <Heart heartStyle={heartStyle} />
+        </HeartWrapper>
         <Image src={place.url} alt="" />
         <Property color={color}>
           {propertyRender}
@@ -155,9 +172,6 @@ const Place = (props) => {
 };
 
 Place.propTypes = {
-  savedList: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  })).isRequired,
   first: PropTypes.bool,
   last: PropTypes.bool,
   place: PropTypes.shape({
@@ -172,6 +186,7 @@ Place.propTypes = {
     averageReview: PropTypes.number.isRequired,
     savedList: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   }),
+  renderList: PropTypes.func.isRequired,
 };
 
 export default Place;

@@ -94,7 +94,7 @@ class PlaceList extends React.Component {
   }
 
   render() {
-    const { places, savedList } = this.props;
+    const { places, savedList, renderList } = this.props;
     const { index, start, end } = this.state;
     const { next, prev } = this;
 
@@ -116,7 +116,14 @@ class PlaceList extends React.Component {
                 last = true;
               }
               return (
-                <Place savedList={savedList} first={first} last={last} key={place._id} place={place} />
+                <Place
+                  renderList={renderList}
+                  savedList={savedList}
+                  first={first}
+                  last={last}
+                  key={place._id}
+                  place={place}
+                />
               );
             })}
           </InnerDiv>
@@ -146,6 +153,7 @@ PlaceList.propTypes = {
     totalReviews: PropTypes.number.isRequired,
     averageReview: PropTypes.number.isRequired,
   })).isRequired,
+  renderList: PropTypes.func.isRequired,
 };
 
 export default PlaceList;

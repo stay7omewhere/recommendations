@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import PlaceList from './PlaceList';
+import SavedList from './SavedList';
 
 const AppDiv = styled.div`
   -webkit-font-smoothing: antialiased;
@@ -11,6 +12,7 @@ const AppDiv = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: 100%;
 `;
 
 const StyledTitle = styled.h1`
@@ -26,10 +28,15 @@ class App extends React.Component {
     this.state = {
       places: [],
       savedList: [],
+      currentPlace: {},
     };
+    this.closeList = this.closeList.bind(this);
+    this.renderList = this.renderList.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown);
     axios('/api/nearbyPlaces/1').then((response) => response.data).then((places) => {
       axios('/api/savedList').then((reponse) => {
         const savedList = reponse.data;
@@ -41,12 +48,32 @@ class App extends React.Component {
     });
   }
 
+  handleKeyDown(e) {
+    if (e.key === 'Escape') {
+      this.closeList();
+    }
+  }
+
+  closeList() {
+    this.setState({
+      currentPlace: {},
+    });
+  }
+
+  renderList(place) {
+    this.setState({
+      currentPlace: place,
+    });
+  }
+
   render() {
-    const { places, savedList } = this.state;
+    const { places, savedList, currentPlace } = this.state;
+    const { closeList, renderList } = this;
     return (
       <AppDiv>
+        <SavedList savedList={savedList} currentPlace={currentPlace} closeList={closeList} />
         <StyledTitle>More places to stay</StyledTitle>
-        <PlaceList savedList={savedList} places={places} />
+        <PlaceList renderList={renderList} savedList={savedList} places={places} />
       </AppDiv>
     );
   }
