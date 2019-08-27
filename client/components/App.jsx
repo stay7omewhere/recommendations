@@ -39,7 +39,10 @@ class App extends React.Component {
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown);
-    axios('/api/nearbyPlaces/1').then((response) => response.data).then((places) => {
+    const splitUrl = document.URL.split('/');
+    const index = splitUrl.indexOf('listing');
+    const id = splitUrl[index + 1];
+    axios(`/api/nearbyPlaces/${id}`).then((response) => response.data).then((places) => {
       axios('/api/savedList').then((reponse) => {
         const savedList = reponse.data;
         this.setState({

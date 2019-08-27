@@ -9,7 +9,7 @@ app.use(require('morgan')('dev'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use('/listing/:id', express.static('public'));
 
 
 app.get('/api/nearbyPlaces/:id', (req, res) => {
