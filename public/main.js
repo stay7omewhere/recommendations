@@ -1,88 +1,88 @@
-/** ****/ (function (modules) { // webpackBootstrap
-/***** */ 	// The module cache
-/** ****/ 	let installedModules = {};
-  /***** */
-  /***** */ 	// The require function
-  /** ****/ 	function __webpack_require__(moduleId) {
-    /***** */
-    /** ****/ 		// Check if module is in cache
-    /***** */ 		if (installedModules[moduleId]) {
-      /** ****/ 			return installedModules[moduleId].exports;
-      /***** */ 		}
-    /** ****/ 		// Create a new module (and put it into the cache)
-    /** ****/ 		let module = installedModules[moduleId] = {
-      /***** */ 			i: moduleId,
-      /***** */ 			l: false,
-      /** ****/ 			exports: {},
-      /***** */ 		};
-    /** ****/
-    /** ****/ 		// Execute the module function
-    /** ****/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-    /** ****/
-    /***** */ 		// Flag the module as loaded
-    /** ****/ 		module.l = true;
-    /***** */
-    /***** */ 		// Return the exports of the module
-    /** ****/ 		return module.exports;
-    /***** */ 	}
-  /***** */
-  /** ****/
-  /***** */ 	// expose the modules object (__webpack_modules__)
-  /***** */ 	__webpack_require__.m = modules;
-  /***** */
-  /***** */ 	// expose the module cache
-  /** ****/ 	__webpack_require__.c = installedModules;
-  /***** */
-  /***** */ 	// define getter function for harmony exports
-  /***** */ 	__webpack_require__.d = function (exports, name, getter) {
-    /** ****/ 		if (!__webpack_require__.o(exports, name)) {
-      /** ****/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-      /***** */ 		}
-    /***** */ 	};
-  /** ****/
-  /***** */ 	// define __esModule on exports
-  /***** */ 	__webpack_require__.r = function (exports) {
-    /***** */ 		if (typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-      /***** */ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-      /***** */ 		}
-    /** ****/ 		Object.defineProperty(exports, '__esModule', { value: true });
-    /** ****/ 	};
-  /***** */
-  /** ****/ 	// create a fake namespace object
-  /** ****/ 	// mode & 1: value is a module id, require it
-  /** ****/ 	// mode & 2: merge all properties of value into the ns
-  /***** */ 	// mode & 4: return value when already ns object
-  /** ****/ 	// mode & 8|1: behave like require
-  /***** */ 	__webpack_require__.t = function (value, mode) {
-    /***** */ 		if (mode & 1) value = __webpack_require__(value);
-    /** ****/ 		if (mode & 8) return value;
-    /***** */ 		if ((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-    /***** */ 		let ns = Object.create(null);
-    /** ****/ 		__webpack_require__.r(ns);
-    /** ****/ 		Object.defineProperty(ns, 'default', { enumerable: true, value });
-    /***** */ 		if (mode & 2 && typeof value !== 'string') for (let key in value) __webpack_require__.d(ns, key, ((key) => { return value[key]; }).bind(null, key));
-    /***** */ 		return ns;
-    /** ****/ 	};
-  /***** */
-  /***** */ 	// getDefaultExport function for compatibility with non-harmony modules
-  /***** */ 	__webpack_require__.n = function (module) {
-    /** ****/ 		let getter = module && module.__esModule
-/******/ 			? function getDefault() { return module.default; }
-/******/ 			: function getModuleExports() { return module; };
-    /***** */ 		__webpack_require__.d(getter, 'a', getter);
-    /** ****/ 		return getter;
-    /** ****/ 	};
-  /***** */
-  /** ****/ 	// Object.prototype.hasOwnProperty.call
-  /***** */ 	__webpack_require__.o = function (object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-  /***** */
-  /***** */ 	// __webpack_public_path__
-  /** ****/ 	__webpack_require__.p = '';
-  /** ****/
-  /** ****/
-  /***** */ 	// Load entry module and return exports
-  /***** */ 	return __webpack_require__(__webpack_require__.s = './client/index.jsx');
-/***** */ }
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./client/index.jsx");
+/******/ })
 /************************************************************************/
 /******/ ({
 
@@ -118,7 +118,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ \"./node_modules/styled-components/dist/styled-components.browser.esm.js\");\n/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ \"./node_modules/prop-types/index.js\");\n/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _RatingStars__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RatingStars */ \"./client/components/RatingStars.jsx\");\nfunction _templateObject13() {\n  var data = _taggedTemplateLiteral([\"\\n  padding-bottom: 15px;\\n\"]);\n\n  _templateObject13 = function _templateObject13() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject12() {\n  var data = _taggedTemplateLiteral([\"\\n  padding: 15px 0px;\\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\\n  font-family: Nunito Sans, san-serff;\\n  font-weight: 700;\\n  font-size: 1em;\\n\"]);\n\n  _templateObject12 = function _templateObject12() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject11() {\n  var data = _taggedTemplateLiteral([\"\\n\\n  font-weight: 700;\\n  font-size: .85em;\\n\"]);\n\n  _templateObject11 = function _templateObject11() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject10() {\n  var data = _taggedTemplateLiteral([\"\\n  font-size: .9em;\\n  font-weight: 500;\\n\"]);\n\n  _templateObject10 = function _templateObject10() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject9() {\n  var data = _taggedTemplateLiteral([\"\\n\\n\"]);\n\n  _templateObject9 = function _templateObject9() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject8() {\n  var data = _taggedTemplateLiteral([\"\\n  display: inline-flex;\\n  flex-direction: row;\\n\"]);\n\n  _templateObject8 = function _templateObject8() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject7() {\n  var data = _taggedTemplateLiteral([\"\\n  display: \", \";\\n  margin-bottom: 24px;\\n\"]);\n\n  _templateObject7 = function _templateObject7() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject6() {\n  var data = _taggedTemplateLiteral([\"\\n  height: 14px; \\n  width: 14px; \\n  display: block; \\n  fill: black;\\n\"]);\n\n  _templateObject6 = function _templateObject6() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject5() {\n  var data = _taggedTemplateLiteral([\"\\n  box-sizing: content-box;\\n  padding: 24px 32px;\\n  margin-left: -32px;\\n  margin-top: -24px;\\n  display: inline-flex;\\n  flex-direction: column;\\n  width: 100%;\\n  border: 0;\\n  background: white;\\n  font-family: Nunito Sans, san-serff;\\n  font-weight: 700;\\n  font-size: 1em;\\n  color: rgb(72, 72, 72);\\n\"]);\n\n  _templateObject5 = function _templateObject5() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject4() {\n  var data = _taggedTemplateLiteral([\"\\n  height: 100%;\\n  font-weight: 500;\\n\"]);\n\n  _templateObject4 = function _templateObject4() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject3() {\n  var data = _taggedTemplateLiteral([\"\\n  display: inline-flex;\\n  flex-direction: column;\\n  justify-content: space-between;\\n  text-align: left;\\n\"]);\n\n  _templateObject3 = function _templateObject3() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject2() {\n  var data = _taggedTemplateLiteral([\"\\n  transform: \", \";\\n  transition: all ease 0.3s;\\n  background: white;\\n  position: absolute;\\n  box-sizing: border-box;\\n  display: inline-flex;\\n  flex-direction: column;\\n  width: 568px;\\n  height: \", \";\\n  padding: 24px 32px;\\n  margin-top: -32px;\\n  margin-left: -32px;\\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 20px 20px;\\n  overflow-y: \", \";\\n  overflow-x: 'hidden';\\n  font-family: Nunito Sans, san-serff;\\n  font-weight: 700;\\n  font-size: 1em;\\n  color: rgb(72, 72, 72);\\n\"]);\n\n  _templateObject2 = function _templateObject2() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject() {\n  var data = _taggedTemplateLiteral([\"\\n  height: 80px;\\n  padding-right: 16px;\\n\"]);\n\n  _templateObject = function _templateObject() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }\n\n\n\n\n\nvar StyledMiniImage = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].img(_templateObject());\nStyledMiniImage.displayName = 'StyledMiniImage';\nvar MiniPlaceDiv = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].div(_templateObject2(), function (props) {\n  return props.expanded ? 'translateY(0px)' : 'translateY(620.5px)';\n}, function (props) {\n  return props.expanded ? '100%' : '128px';\n}, function (props) {\n  return props.expanded ? 'scroll' : 'hidden';\n});\nMiniPlaceDiv.displayName = 'MiniPlaceDiv';\nvar DescriptionDiv = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].div(_templateObject3());\nDescriptionDiv.displayName = 'DescriptionDiv';\nvar About = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].div(_templateObject4());\nvar MiniPlaceButton = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].button(_templateObject5());\nvar CollaspArrow = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].svg(_templateObject6());\nvar ArrowDiv = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].div(_templateObject7(), function (props) {\n  return props.expanded ? 'block' : 'none';\n});\nvar ImageDescriptionWrapper = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].div(_templateObject8());\nvar MiniTitle = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].div(_templateObject9());\nvar MiniLocation = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].div(_templateObject10());\nvar MiniReviews = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].div(_templateObject11());\nvar AboutHeader = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].div(_templateObject12());\nvar AboutText = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].div(_templateObject13());\n\nvar MiniPlace = function MiniPlace(props) {\n  var place = props.place,\n      expanded = props.expanded,\n      toggleExpanded = props.toggleExpanded;\n  var percent = \"\".concat(place.averageReview / 5 * 100, \"%\");\n  var buttonNode;\n  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MiniPlaceDiv, {\n    expanded: expanded\n  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MiniPlaceButton, {\n    onClick: function onClick() {\n      toggleExpanded();\n      buttonNode.blur();\n    },\n    ref: function ref(buttonDOM) {\n      buttonNode = buttonDOM;\n    }\n  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ArrowDiv, {\n    expanded: expanded\n  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CollaspArrow, {\n    viewBox: \"0 0 18 18\",\n    focusable: \"false\"\n  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"path\", {\n    d: \"m16.29 4.3a1 1 0 1 1 1.41 1.42l-8 8a1 1 0 0 1 -1.41 0l-8-8a1 1 0 1 1 1.41-1.42l7.29 7.29z\",\n    fillRule: \"evenodd\"\n  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ImageDescriptionWrapper, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(StyledMiniImage, {\n    src: place.url,\n    alt: \"\"\n  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DescriptionDiv, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MiniTitle, null, place.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MiniLocation, null, \"\".concat(place.city, \", \").concat(place.state, \", \").concat(place.country)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MiniReviews, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RatingStars__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n    size: \"1.2em\",\n    percent: percent\n  }), \" \".concat(place.totalReviews, \" reviews\"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(About, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AboutHeader, null, \"About this listing\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AboutText, null, place.about), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AboutHeader, null, \"The space\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AboutText, null, place.theSpace), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AboutHeader, null, \"Neighborhood\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AboutText, null, place.neighborhood)));\n};\n\nMiniPlace.propTypes = {\n  place: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.shape({\n    url: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,\n    title: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,\n    city: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,\n    state: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,\n    country: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,\n    about: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,\n    theSpace: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,\n    neighborhood: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,\n    averageReview: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number,\n    totalReviews: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number\n  }).isRequired,\n  expanded: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.bool.isRequired,\n  toggleExpanded: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.func.isRequired\n};\n/* harmony default export */ __webpack_exports__[\"default\"] = (MiniPlace);\n\n//# sourceURL=webpack:///./client/components/MiniPlace.jsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ \"./node_modules/styled-components/dist/styled-components.browser.esm.js\");\n/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ \"./node_modules/prop-types/index.js\");\n/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _RatingStars__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RatingStars */ \"./client/components/RatingStars.jsx\");\nfunction _templateObject13() {\n  var data = _taggedTemplateLiteral([\"\\n  padding-bottom: 15px;\\n\"]);\n\n  _templateObject13 = function _templateObject13() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject12() {\n  var data = _taggedTemplateLiteral([\"\\n  padding: 15px 0px;\\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\\n  font-family: Nunito Sans, san-serff;\\n  font-weight: 700;\\n  font-size: 1em;\\n\"]);\n\n  _templateObject12 = function _templateObject12() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject11() {\n  var data = _taggedTemplateLiteral([\"\\n\\n  font-weight: 700;\\n  font-size: .85em;\\n\"]);\n\n  _templateObject11 = function _templateObject11() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject10() {\n  var data = _taggedTemplateLiteral([\"\\n  font-size: .9em;\\n  font-weight: 500;\\n\"]);\n\n  _templateObject10 = function _templateObject10() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject9() {\n  var data = _taggedTemplateLiteral([\"\\n\\n\"]);\n\n  _templateObject9 = function _templateObject9() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject8() {\n  var data = _taggedTemplateLiteral([\"\\n  display: inline-flex;\\n  flex-direction: row;\\n\"]);\n\n  _templateObject8 = function _templateObject8() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject7() {\n  var data = _taggedTemplateLiteral([\"\\n  display: \", \";\\n  margin-bottom: 24px;\\n\"]);\n\n  _templateObject7 = function _templateObject7() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject6() {\n  var data = _taggedTemplateLiteral([\"\\n  height: 14px; \\n  width: 14px; \\n  display: block; \\n  fill: black;\\n\"]);\n\n  _templateObject6 = function _templateObject6() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject5() {\n  var data = _taggedTemplateLiteral([\"\\n  box-sizing: content-box;\\n  padding: 24px 32px;\\n  margin-left: -32px;\\n  margin-top: -24px;\\n  display: inline-flex;\\n  flex-direction: column;\\n  width: 100%;\\n  border: 0;\\n  background: white;\\n  font-family: Nunito Sans, san-serff;\\n  font-weight: 700;\\n  font-size: 1em;\\n  color: rgb(72, 72, 72);\\n  :hover {\\n    cursor: pointer;\\n  }\\n\"]);\n\n  _templateObject5 = function _templateObject5() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject4() {\n  var data = _taggedTemplateLiteral([\"\\n  height: 100%;\\n  font-weight: 500;\\n\"]);\n\n  _templateObject4 = function _templateObject4() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject3() {\n  var data = _taggedTemplateLiteral([\"\\n  display: inline-flex;\\n  flex-direction: column;\\n  justify-content: space-between;\\n  text-align: left;\\n\"]);\n\n  _templateObject3 = function _templateObject3() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject2() {\n  var data = _taggedTemplateLiteral([\"\\n  transform: \", \";\\n  transition: all ease 0.3s;\\n  background: white;\\n  position: absolute;\\n  box-sizing: border-box;\\n  display: inline-flex;\\n  flex-direction: column;\\n  width: 568px;\\n  height: \", \";\\n  padding: 24px 32px;\\n  margin-top: -32px;\\n  margin-left: -32px;\\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 20px 20px;\\n  overflow-y: \", \";\\n  overflow-x: 'hidden';\\n  font-family: Nunito Sans, san-serff;\\n  font-weight: 700;\\n  font-size: 1em;\\n  color: rgb(72, 72, 72);\\n\"]);\n\n  _templateObject2 = function _templateObject2() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _templateObject() {\n  var data = _taggedTemplateLiteral([\"\\n  height: 80px;\\n  padding-right: 16px;\\n\"]);\n\n  _templateObject = function _templateObject() {\n    return data;\n  };\n\n  return data;\n}\n\nfunction _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }\n\n\n\n\n\nvar StyledMiniImage = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].img(_templateObject());\nStyledMiniImage.displayName = 'StyledMiniImage';\nvar MiniPlaceDiv = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].div(_templateObject2(), function (props) {\n  return props.expanded ? 'translateY(0px)' : 'translateY(620.5px)';\n}, function (props) {\n  return props.expanded ? '100%' : '128px';\n}, function (props) {\n  return props.expanded ? 'scroll' : 'hidden';\n});\nMiniPlaceDiv.displayName = 'MiniPlaceDiv';\nvar DescriptionDiv = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].div(_templateObject3());\nDescriptionDiv.displayName = 'DescriptionDiv';\nvar About = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].div(_templateObject4());\nAbout.displayName = 'About';\nvar MiniPlaceButton = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].button(_templateObject5());\nMiniPlaceButton.displayName = 'MiniPlaceButton';\nvar CollaspArrow = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].svg(_templateObject6());\nCollaspArrow.displayName = 'CollaspArrow';\nvar ArrowDiv = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].div(_templateObject7(), function (props) {\n  return props.expanded ? 'block' : 'none';\n});\nArrowDiv.displayName = 'ArrowDiv';\nvar ImageDescriptionWrapper = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].div(_templateObject8());\nImageDescriptionWrapper.displayName = 'ImageDescriptionWrapper';\nvar MiniTitle = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].div(_templateObject9());\nMiniTitle.displayName = 'MiniTitle';\nvar MiniLocation = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].div(_templateObject10());\nMiniLocation.displayName = 'MiniLocation';\nvar MiniReviews = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].div(_templateObject11());\nMiniReviews.displayName = 'MiniReviews';\nvar AboutHeader = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].div(_templateObject12());\nAboutHeader.displayName = 'AboutHeader';\nvar AboutText = styled_components__WEBPACK_IMPORTED_MODULE_1__[\"default\"].div(_templateObject13());\nAboutText.displayName = 'AboutText';\n\nvar MiniPlace = function MiniPlace(props) {\n  var place = props.place,\n      expanded = props.expanded,\n      toggleExpanded = props.toggleExpanded;\n  var percent = \"\".concat(place.averageReview / 5 * 100, \"%\");\n  var buttonNode;\n  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MiniPlaceDiv, {\n    expanded: expanded\n  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MiniPlaceButton, {\n    onClick: function onClick() {\n      toggleExpanded();\n      buttonNode.blur();\n    },\n    ref: function ref(buttonDOM) {\n      buttonNode = buttonDOM;\n    }\n  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ArrowDiv, {\n    expanded: expanded\n  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CollaspArrow, {\n    viewBox: \"0 0 18 18\",\n    focusable: \"false\"\n  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"path\", {\n    d: \"m16.29 4.3a1 1 0 1 1 1.41 1.42l-8 8a1 1 0 0 1 -1.41 0l-8-8a1 1 0 1 1 1.41-1.42l7.29 7.29z\",\n    fillRule: \"evenodd\"\n  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ImageDescriptionWrapper, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(StyledMiniImage, {\n    src: place.url,\n    alt: \"\"\n  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DescriptionDiv, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MiniTitle, null, place.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MiniLocation, null, \"\".concat(place.city, \", \").concat(place.state, \", \").concat(place.country)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MiniReviews, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RatingStars__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n    size: \"1.2em\",\n    percent: percent\n  }), \" \".concat(place.totalReviews, \" reviews\"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(About, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AboutHeader, null, \"About this listing\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AboutText, null, place.about), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AboutHeader, null, \"The space\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AboutText, null, place.theSpace), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AboutHeader, null, \"Neighborhood\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AboutText, null, place.neighborhood)));\n};\n\nMiniPlace.propTypes = {\n  place: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.shape({\n    url: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,\n    title: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,\n    city: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,\n    state: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,\n    country: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,\n    about: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,\n    theSpace: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,\n    neighborhood: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,\n    averageReview: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number,\n    totalReviews: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number\n  }).isRequired,\n  expanded: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.bool.isRequired,\n  toggleExpanded: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.func.isRequired\n};\n/* harmony default export */ __webpack_exports__[\"default\"] = (MiniPlace);\n\n//# sourceURL=webpack:///./client/components/MiniPlace.jsx?");
 
 /***/ }),
 
@@ -822,4 +822,4 @@ eval("module.exports = function(originalModule) {\n\tif (!originalModule.webpack
 
 /***/ })
 
-/******/ }));
+/******/ });
