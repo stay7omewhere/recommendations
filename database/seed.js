@@ -17,7 +17,7 @@ model.db.once('open', () => {
   // once all collectiosn deleted, generate data
   Promise.all(deletePromises).then(() => {
     const savedLists = [];
-    for (let i = 0; i < 5; i += 1) {
+    for (let i = 0; i < 10; i += 1) {
       fakeList.push(faker.lorem.word());
       const saveListName = {
         name: fakeList[i],
@@ -35,7 +35,7 @@ model.db.once('open', () => {
       }
 
       // randomly choost savedList
-      const savedList = fakeList.slice(Math.floor(Math.random() * 6));
+      const savedList = fakeList.slice(Math.floor(Math.random() * 20));
 
       // generates a places data
       const newPlace = {
@@ -43,12 +43,20 @@ model.db.once('open', () => {
         url: `https://mock-property-images.s3-us-west-1.amazonaws.com/houses/house-${i}.jpeg`,
         title: faker.lorem.sentence(),
         city: faker.address.city(),
+        state: faker.address.state(),
+        country: faker.address.country(),
         plusVerified,
         propertyType: faker.lorem.words(),
         price: Math.floor(Math.random() * 200 + 100),
         averageReview: Math.random() + 4,
         totalReviews: Math.floor(Math.random() * 100 + 100),
         savedList,
+        about: faker.lorem.paragraphs(),
+        theSpace: faker.lorem.paragraphs()
+          + faker.lorem.paragraphs()
+          + faker.lorem.paragraphs()
+          + faker.lorem.paragraphs(),
+        neighborhood: faker.lorem.paragraphs(),
       };
       newPlaces.push(newPlace);
     }
