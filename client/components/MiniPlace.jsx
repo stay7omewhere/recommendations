@@ -60,6 +60,9 @@ const MiniPlaceButton = styled.button`
   font-weight: 700;
   font-size: 1em;
   color: rgb(72, 72, 72);
+  :hover {
+    cursor: pointer;
+  }
 `;
 MiniPlaceButton.displayName = 'MiniPlaceButton';
 
