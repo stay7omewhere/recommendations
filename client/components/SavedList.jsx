@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import SavedListEntry from './SavedListEntry';
+import MiniPlace from './MiniPlace';
 
 const StyledSavedList = styled.div`
   display: ${(props) => (Object.keys(props.currentPlace).length ? 'flex' : 'none')}
@@ -12,19 +13,25 @@ const StyledSavedList = styled.div`
   width: 100%;
   height: 100%;
   z-index: 1;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.75);
   justify-content: center;
   align-items: center;
+  
 `;
 StyledSavedList.displayName = 'StyledSavedList';
 
 const MainForm = styled.div`
+  position: relative;
   box-sizing: border-box;
   padding: 32px 32px;
   background: white;
-  height: 724px;
+  height: 748.5px;
   width: 568px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 10px 0px;
+  justify-content: space-between;
+  display: inline-flex;
+  flex-direction: column;
+  overflow: hidden;
 `;
 MainForm.displayName = 'MainForm';
 
@@ -78,9 +85,26 @@ const StyledList = styled.div`
 `;
 StyledList.displayName = 'StyledList';
 
+const ScrollableList = styled.div`
+  overflow:auto;
+  max-height:496.5px;
+  padding: 0px 32px;
+  margin: 0px -32px;
+`;
+ScrollableList.displayName = 'ScrollableList';
+
 
 const SavedList = (props) => {
-  const { currentPlace, savedList, closeList } = props;
+  const {
+    currentPlace, savedList, closeList, expanded, toggleExpanded,
+  } = props;
+
+  function handleClick(e) {
+    if (e.target.id === 'StyledSavedList') {
+      closeList();
+    }
+  }
+
   let renderSavedList = null;
   if (Object.keys(currentPlace).length && savedList.length) {
     renderSavedList = savedList.map((list) => {
@@ -91,31 +115,31 @@ const SavedList = (props) => {
       return <SavedListEntry key={list._id} favorited={favorited} listName={list.name} />;
     });
   }
-  const handleClick = (e) => {
-    if (e.target.id === 'StyledSavedList') {
-      closeList();
-    }
-  };
 
   return (
     <StyledSavedList id="StyledSavedList" currentPlace={currentPlace} onClick={handleClick}>
       <MainForm>
-        <ExitButton onClick={closeList}>
-          <Exit viewBox="0 0 24 24" focusable="false">
-            <path d="m23.25 24c-.19 0-.38-.07-.53-.22l-10.72-10.72-10.72 10.72c-.29.29-.77.29-1.06 0s-.29-.77 0-1.06l10.72-10.72-10.72-10.72c-.29-.29-.29-.77 0-1.06s.77-.29 1.06 0l10.72 10.72 10.72-10.72c.29-.29.77-.29 1.06 0s .29.77 0 1.06l-10.72 10.72 10.72 10.72c.29.29.29.77 0 1.06-.15.15-.34.22-.53.22" fillRule="evenodd" />
-          </Exit>
-        </ExitButton>
-        <SavedListTitle>
+        <div>
+          <ExitButton id="ExitButton" onClick={closeList}>
+            <Exit viewBox="0 0 24 24" focusable="false">
+              <path d="m23.25 24c-.19 0-.38-.07-.53-.22l-10.72-10.72-10.72 10.72c-.29.29-.77.29-1.06 0s-.29-.77 0-1.06l10.72-10.72-10.72-10.72c-.29-.29-.29-.77 0-1.06s.77-.29 1.06 0l10.72 10.72 10.72-10.72c.29-.29.77-.29 1.06 0s .29.77 0 1.06l-10.72 10.72 10.72 10.72c.29.29.29.77 0 1.06-.15.15-.34.22-.53.22" fillRule="evenodd" />
+            </Exit>
+          </ExitButton>
+          <SavedListTitle>
           Save to list
-        </SavedListTitle>
-        <NewList>
-          <NewListText>
-            Create New List
-          </NewListText>
-        </NewList>
-        <StyledList>
-          {renderSavedList}
-        </StyledList>
+          </SavedListTitle>
+          <ScrollableList>
+            <NewList>
+              <NewListText>
+                Create New List
+              </NewListText>
+            </NewList>
+            <StyledList>
+              {renderSavedList}
+            </StyledList>
+          </ScrollableList>
+        </div>
+        <MiniPlace toggleExpanded={toggleExpanded} expanded={expanded} place={currentPlace} />
       </MainForm>
     </StyledSavedList>
   );
@@ -139,6 +163,8 @@ SavedList.propTypes = {
     name: PropTypes.string.isRequired,
   })).isRequired,
   closeList: PropTypes.func.isRequired,
+  expanded: PropTypes.bool.isRequired,
+  toggleExpanded: PropTypes.func.isRequired,
 };
 
 export default SavedList;
