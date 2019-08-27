@@ -44,10 +44,16 @@ describe('SavedList Component', () => {
   ];
 
   const wrapper = shallow(
-    <SavedList savedList={savedList} currentPlace={testPlace} closeList={() => {}} />,
+    <SavedList
+      savedList={savedList}
+      currentPlace={testPlace}
+      closeList={() => {}}
+      expanded={false}
+      toggleExpanded={() => {}}
+    />,
   );
 
-  it('should dynamcially render a list', () => {
+  it('should dynamically render a list', () => {
     expect(wrapper.find('SavedListEntry').length).toEqual(5);
   });
 

@@ -44,6 +44,7 @@ const About = styled.div`
   height: 100%;
   font-weight: 500;
 `;
+About.displayName = 'About';
 
 const MiniPlaceButton = styled.button`
   box-sizing: content-box;
@@ -60,6 +61,7 @@ const MiniPlaceButton = styled.button`
   font-size: 1em;
   color: rgb(72, 72, 72);
 `;
+MiniPlaceButton.displayName = 'MiniPlaceButton';
 
 const CollaspArrow = styled.svg`
   height: 14px; 
@@ -67,31 +69,37 @@ const CollaspArrow = styled.svg`
   display: block; 
   fill: black;
 `;
+CollaspArrow.displayName = 'CollaspArrow';
 
 const ArrowDiv = styled.div`
   display: ${(props) => (props.expanded ? 'block' : 'none')};
   margin-bottom: 24px;
 `;
+ArrowDiv.displayName = 'ArrowDiv';
 
 const ImageDescriptionWrapper = styled.div`
   display: inline-flex;
   flex-direction: row;
 `;
+ImageDescriptionWrapper.displayName = 'ImageDescriptionWrapper';
 
 const MiniTitle = styled.div`
 
 `;
+MiniTitle.displayName = 'MiniTitle';
 
 const MiniLocation = styled.div`
   font-size: .9em;
   font-weight: 500;
 `;
+MiniLocation.displayName = 'MiniLocation';
 
 const MiniReviews = styled.div`
 
   font-weight: 700;
   font-size: .85em;
 `;
+MiniReviews.displayName = 'MiniReviews';
 
 const AboutHeader = styled.div`
   padding: 15px 0px;
@@ -100,10 +108,13 @@ const AboutHeader = styled.div`
   font-weight: 700;
   font-size: 1em;
 `;
+AboutHeader.displayName = 'AboutHeader';
+
 
 const AboutText = styled.div`
   padding-bottom: 15px;
 `;
+AboutText.displayName = 'AboutText';
 
 const MiniPlace = (props) => {
   const { place, expanded, toggleExpanded } = props;
