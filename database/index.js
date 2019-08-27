@@ -11,12 +11,17 @@ const placeSchema = new mongoose.Schema({
   url: String,
   title: String,
   city: String,
+  state: String,
+  country: String,
   plusVerified: Boolean,
   propertyType: String,
   price: Number,
   averageReview: Number,
   totalReviews: Number,
   savedList: [String],
+  about: String,
+  theSpace: String,
+  neighborhood: String,
 });
 
 const Place = mongoose.model('Places', placeSchema);
