@@ -57,7 +57,7 @@ describe('Place Component', () => {
   });
 
   it('should render stars', () => {
-    expect(wrapper.find('Stars').text()).toBe('★★★★★★★★★★');
+    expect(wrapper.find('RatingStars').exists());
   });
 
   it('should render a plus tag for plus verified places', () => {
