@@ -123,16 +123,16 @@ const SavedList = (props) => {
 
 SavedList.propTypes = {
   currentPlace: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    plusVerified: PropTypes.bool.isRequired,
-    propertyType: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    city: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    totalReviews: PropTypes.number.isRequired,
-    averageReview: PropTypes.number.isRequired,
-    savedList: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    _id: PropTypes.string,
+    url: PropTypes.string,
+    plusVerified: PropTypes.bool,
+    propertyType: PropTypes.string,
+    title: PropTypes.string,
+    city: PropTypes.string,
+    price: PropTypes.number,
+    totalReviews: PropTypes.number,
+    averageReview: PropTypes.number,
+    savedList: PropTypes.arrayOf(PropTypes.string.isRequired),
   }).isRequired,
   savedList: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
