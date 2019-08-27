@@ -31,6 +31,7 @@ const ButtonWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 0px 10px;
+  user-select: none;
 `;
 ButtonWrapper.displayName = 'ButtonWrapper';
 
@@ -52,9 +53,13 @@ Arrow.displayName = 'Arrow';
 class PlaceList extends React.Component {
   constructor(props) {
     super(props);
+    let end = false;
+    if (props.places.length) {
+      end = props.places.length <= 3;
+    }
     this.state = {
       index: 0,
-      end: props.places.length <= 3,
+      end,
       start: true,
     };
     this.prev = this.prev.bind(this);
@@ -93,7 +98,7 @@ class PlaceList extends React.Component {
   }
 
   render() {
-    const { places } = this.props;
+    const { places, savedList, renderList } = this.props;
     const { index, start, end } = this.state;
     const { next, prev } = this;
 
@@ -116,6 +121,8 @@ class PlaceList extends React.Component {
               }
               return (
                 <Place
+                  renderList={renderList}
+                  savedList={savedList}
                   first={first}
                   last={last}
                   key={place._id}
@@ -136,6 +143,9 @@ class PlaceList extends React.Component {
 }
 
 PlaceList.propTypes = {
+  savedList: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  })).isRequired,
   places: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
@@ -147,6 +157,7 @@ PlaceList.propTypes = {
     totalReviews: PropTypes.number.isRequired,
     averageReview: PropTypes.number.isRequired,
   })).isRequired,
+  renderList: PropTypes.func.isRequired,
 };
 
 export default PlaceList;
