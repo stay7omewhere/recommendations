@@ -11,25 +11,20 @@ const placeSchema = new mongoose.Schema({
   url: String,
   title: String,
   city: String,
+  state: String,
+  country: String,
   plusVerified: Boolean,
   propertyType: String,
   price: Number,
-  reviews: [Number],
+  averageReview: Number,
+  totalReviews: Number,
   savedList: [String],
+  about: String,
+  theSpace: String,
+  neighborhood: String,
 });
 
 const Place = mongoose.model('Places', placeSchema);
-
-const activitySchema = new mongoose.Schema({
-  url: String,
-  title: String,
-  category: String,
-  price: Number,
-  reviews: [Number],
-  savedList: [String],
-});
-
-const Activity = mongoose.model('Activity', activitySchema);
 
 const savedListSchema = new mongoose.Schema({
   name: String,
@@ -41,5 +36,4 @@ module.exports = {
   db,
   SavedList,
   Place,
-  Activity,
 };

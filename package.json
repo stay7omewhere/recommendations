@@ -7,21 +7,31 @@
   "engines": {
     "node": ">=6.13.0"
   },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/config/testSetup.js"
+    ]
+  },
   "private": true,
   "scripts": {
     "build:dev": "npx webpack --mode=development --watch",
     "build": "npx webpack",
     "start:dev": "nodemon ./server/server.js",
     "start": "node ./server/server.js",
-    "seed": "node ./database/seed.js"
+    "seed": "node ./database/seed.js",
+    "test": "npx jest --watch"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "mongoose": "^5.6.10",
     "morgan": "^1.9.1",
+    "prop-types": "^15.7.2",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "styled-components": "^4.3.2",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -29,6 +39,9 @@
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
+    "babel-preset-airbnb": "^4.0.1",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^6.2.1",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
@@ -36,6 +49,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "jest": "^24.9.0",
     "nodemon": "^1.19.1",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7",

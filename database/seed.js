@@ -6,9 +6,6 @@ const fakeList = [];
 model.db.once('open', () => {
   // delete all collections
   const deletePromises = [
-    model.db.dropCollection('activities').catch(() => {
-
-    }),
     model.db.dropCollection('places').catch(() => {
 
     }),
@@ -19,25 +16,18 @@ model.db.once('open', () => {
 
   // once all collectiosn deleted, generate data
   Promise.all(deletePromises).then(() => {
-    const savedListPromises = [];
-    for (let i = 0; i < 5; i += 1) {
+    const savedLists = [];
+    for (let i = 0; i < 10; i += 1) {
       fakeList.push(faker.lorem.word());
-      const saveListName = new model.SavedList({
+      const saveListName = {
         name: fakeList[i],
-      });
-      savedListPromises.push(saveListName.save());
+      };
+      savedLists.push(saveListName);
     }
-    return Promise.all(savedListPromises);
+    return model.SavedList.create(savedLists);
   }).then(() => {
-    const newPlacesPromises = [];
+    const newPlaces = [];
     for (let i = 1; i < 101; i += 1) {
-      // generates random review ratings
-      const reviews = [];
-      const length = Math.floor(Math.random() * 100 + 100);
-      for (let j = 0; i < length; j += 1) {
-        reviews.push(Math.floor(Math.random() * 3 + 3));
-      }
-
       // randomly chooses true or false
       let plusVerified = true;
       if (Math.random() > 0.5) {
@@ -45,49 +35,34 @@ model.db.once('open', () => {
       }
 
       // randomly choost savedList
-      const savedList = fakeList.slice(Math.floor(Math.random() * 6));
+      const savedList = fakeList.slice(Math.floor(Math.random() * 20));
 
       // generates a places data
-      const newPlace = new model.Place({
+      const newPlace = {
         id: i,
         url: `https://mock-property-images.s3-us-west-1.amazonaws.com/houses/house-${i}.jpeg`,
         title: faker.lorem.sentence(),
         city: faker.address.city(),
+        state: faker.address.state(),
+        country: faker.address.country(),
         plusVerified,
         propertyType: faker.lorem.words(),
         price: Math.floor(Math.random() * 200 + 100),
-        reviews,
+        averageReview: Math.random() + 4,
+        totalReviews: Math.floor(Math.random() * 100 + 100),
         savedList,
-      });
-      newPlacesPromises.push(newPlace.save());
+        about: faker.lorem.paragraphs(),
+        theSpace: faker.lorem.paragraphs()
+          + faker.lorem.paragraphs()
+          + faker.lorem.paragraphs()
+          + faker.lorem.paragraphs(),
+        neighborhood: faker.lorem.paragraphs(),
+      };
+      newPlaces.push(newPlace);
     }
-    return Promise.all(newPlacesPromises);
+
+    return model.Place.create(newPlaces);
   }).then(() => {
-    const newActivitiesPromises = [];
-    for (let i = 1; i < 101; i += 1) {
-      // generates random review ratings
-      const reviews = [];
-      const length = Math.floor(Math.random() * 100 + 100);
-      for (let j = 0; i < length; j += 1) {
-        reviews.push(Math.floor(Math.random() * 3 + 3));
-      }
-
-      // generate saved list
-      const savedList = fakeList.slice(Math.floor(Math.random() * 6));
-
-      const newActivity = new model.Activity({
-        url: `https://mock-property-images.s3-us-west-1.amazonaws.com/activities/fun-${i}.jpeg`,
-        title: faker.lorem.sentence(),
-        category: faker.lorem.words(),
-        price: Math.floor(Math.random() * 100 + 50),
-        reviews,
-        savedList,
-      });
-      newActivitiesPromises.push(newActivity.save());
-    }
-    return Promise.all(newActivitiesPromises);
-  })
-    .then(() => {
-      process.exit();
-    });
+    process.exit();
+  });
 });
