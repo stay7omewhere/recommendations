@@ -97,7 +97,7 @@ describe('PlaceList Component', () => {
   });
 
   it('should have correct initial states', () => {
-    expect(wrapper.state()).toEqual({ index: 0, end: true, start: true });
+    expect(wrapper.state()).toEqual({ index: 0, end: false, start: true });
     expect(wrapperBig.state()).toEqual({ index: 0, end: false, start: true });
   });
 

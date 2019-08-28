@@ -55,7 +55,7 @@ class PlaceList extends React.Component {
     super(props);
     this.state = {
       index: 0,
-      end: props.places.length <= 3,
+      end: false,
       start: true,
     };
     this.prev = this.prev.bind(this);
