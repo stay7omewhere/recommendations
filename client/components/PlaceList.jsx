@@ -53,9 +53,13 @@ Arrow.displayName = 'Arrow';
 class PlaceList extends React.Component {
   constructor(props) {
     super(props);
+    let end = false;
+    if (props.places.length) {
+      end = props.places.length <= 3;
+    }
     this.state = {
       index: 0,
-      end: false,
+      end,
       start: true,
     };
     this.prev = this.prev.bind(this);
