@@ -37,7 +37,7 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-          
+
       # run tests!
       - run:
           name: Run tests with JUnit as reporter
@@ -45,4 +45,6 @@ jobs:
           environment:
             JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
 
+      - store_test_results:
+          path: test-results
       
