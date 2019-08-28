@@ -74,20 +74,28 @@ class App extends React.Component {
     }));
   }
 
+  toggleHeart(listName) {
+    console.log('toggle heart: ', listName);
+  }
+
   renderList(place) {
     this.setState({
       currentPlace: place,
     });
   }
 
+
   render() {
     const {
       places, savedList, currentPlace, expanded,
     } = this.state;
-    const { closeList, renderList, toggleExpanded } = this;
+    const {
+      closeList, renderList, toggleExpanded, toggleHeart,
+    } = this;
     return (
       <AppDiv>
         <SavedList
+          toggleHeart={toggleHeart}
           expanded={expanded}
           toggleExpanded={toggleExpanded}
           savedList={savedList}
