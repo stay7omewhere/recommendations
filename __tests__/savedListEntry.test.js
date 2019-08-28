@@ -23,4 +23,8 @@ describe('SavedListEntry Component', () => {
   it('should render a heart', () => {
     expect(wrapper.find('Heart').exists());
   });
+
+  it('should fail test', () => {
+    expect(false).toBe(true);
+  });
 });
