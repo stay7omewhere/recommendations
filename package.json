@@ -13,6 +13,9 @@
     ],
     "reporters": ["default", "jest-junit"]
   },
+  "jest-junit":{
+    "output": "./test-results/junit/results.xml"
+  },
   "private": true,
   "scripts": {
     "build:dev": "npx webpack --mode=development --watch",

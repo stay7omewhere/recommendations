@@ -28,11 +28,6 @@ jobs:
 
       - run: npm install
 
-
-      - run:
-          name: Install JUnit coverage reporter
-          command: npm install --dev jest-junit
-
       - save_cache:
           paths:
             - node_modules
@@ -41,10 +36,10 @@ jobs:
       # run tests!
       - run:
           name: Run tests with JUnit as reporter
-          command: npm run test
-          environment:
-            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
+          command: |
+            mkdir -p ~/test-results/junit
+            npm run test
 
       - store_test_results:
-          path: test-results/jest
+          path: ./test-results
       
