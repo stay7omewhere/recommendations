@@ -38,7 +38,7 @@ jobs:
           name: Run tests with JUnit as reporter
           command: |
             mkdir -p ./test-results/junit
-            npm run test
+            npm run test 
 
       - store_artifacts:
           path: ./test-results/junit

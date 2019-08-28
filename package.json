@@ -14,8 +14,7 @@
   "jest": {
     "setupFilesAfterEnv": [
       "<rootDir>/config/testSetup.js"
-    ],
-    "reporters": ["default", "jest-junit"]
+    ]
   },
   "private": true,
   "scripts": {
