@@ -20,7 +20,7 @@
     "start": "node ./server/server.js",
     "seed": "node ./database/seed.js",
     "test:dev": "npx jest --watch",
-    "test": "jest"
+    "test": "jest --ci --runInBand --reporters=default --reporters=jest-junit"
     
   },
   "dependencies": {
