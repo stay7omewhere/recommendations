@@ -3,6 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Heart from './Heart';
+import RatingStars from './RatingStars';
+
 
 const PlaceDiv = styled.div`
   width: 333;
@@ -56,34 +58,6 @@ const Review = styled.div({
 });
 Review.displayName = 'Review';
 
-const Stars = styled.span({
-  color: 'rgb(216,216,216)',
-  fontSize: '1.1em',
-  display: 'inline-block',
-  position: 'relative',
-  padding: 0,
-});
-Stars.displayName = 'Stars';
-
-const StarsTop = styled.div({
-  color: (props) => (props.color ? props.color : 'rgb(3,132,137)'),
-  padding: 0,
-  position: 'absolute',
-  zIndex: 1,
-  display: 'block',
-  top: 0,
-  left: 0,
-  overflow: 'hidden',
-  width: (props) => props.percent,
-});
-StarsTop.displayName = 'StarsTop';
-
-const StarsBottom = styled.div({
-  padding: 0,
-  display: 'block',
-  zIndex: 0,
-});
-StarsBottom.displayName = 'StarsBottom';
 
 const PlusVerified = styled.span({
   padding: '2px 4px',
@@ -106,12 +80,6 @@ HeartWrapper.displayName = 'HeartWrapper';
 
 
 const Place = (props) => {
-  Place.defaultProps = {
-    place: undefined,
-    first: false,
-    last: false,
-  };
-
   const {
     place, first, last, renderList,
   } = props;
@@ -156,20 +124,19 @@ const Place = (props) => {
         <Title>{place.title}</Title>
         <Price>{`$${place.price}/night`}</Price>
         <Review>
-          <Stars>
-            <StarsTop color={color} percent={percent}>
-              <span>★★★★★</span>
-            </StarsTop>
-            <StarsBottom>
-              <span>★★★★★</span>
-            </StarsBottom>
-          </Stars>
+          <RatingStars size="1.1em" color={color} percent={percent} />
           <span>{` ${place.totalReviews}`}</span>
         </Review>
       </PlaceDiv>
     );
   }
   return null;
+};
+
+Place.defaultProps = {
+  place: undefined,
+  first: false,
+  last: false,
 };
 
 Place.propTypes = {

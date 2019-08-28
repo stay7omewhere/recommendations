@@ -81,8 +81,12 @@ describe('PlaceList Component', () => {
     __v: 0,
   }];
 
-  const wrapper = shallow(<PlaceList places={testPlaceList} savedList={[]} renderList={() => {}} />);
-  const wrapperBig = shallow(<PlaceList places={biggerTestPlaceList} savedList={[]} renderList={() => {}} />);
+  const wrapper = shallow(
+    <PlaceList places={testPlaceList} savedList={[]} renderList={() => {}} />,
+  );
+  const wrapperBig = shallow(
+    <PlaceList places={biggerTestPlaceList} savedList={[]} renderList={() => {}} />,
+  );
 
   it('should dynamically render multiple places', () => {
     expect(wrapper.children().length).toBe(3);

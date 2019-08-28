@@ -31,15 +31,20 @@ class App extends React.Component {
       places: [],
       savedList: [],
       currentPlace: {},
+      expanded: false,
     };
     this.closeList = this.closeList.bind(this);
     this.renderList = this.renderList.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.toggleExpanded = this.toggleExpanded.bind(this);
   }
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown);
-    axios('/api/nearbyPlaces/1').then((response) => response.data).then((places) => {
+    const splitUrl = document.URL.split('/');
+    const index = splitUrl.indexOf('listing');
+    const id = splitUrl[index + 1];
+    axios(`/api/nearbyPlaces/${id}`).then((response) => response.data).then((places) => {
       axios('/api/savedList').then((reponse) => {
         const savedList = reponse.data;
         this.setState({
@@ -59,7 +64,14 @@ class App extends React.Component {
   closeList() {
     this.setState({
       currentPlace: {},
+      expanded: false,
     });
+  }
+
+  toggleExpanded() {
+    this.setState((prevState) => ({
+      expanded: !prevState.expanded,
+    }));
   }
 
   renderList(place) {
@@ -69,11 +81,19 @@ class App extends React.Component {
   }
 
   render() {
-    const { places, savedList, currentPlace } = this.state;
-    const { closeList, renderList } = this;
+    const {
+      places, savedList, currentPlace, expanded,
+    } = this.state;
+    const { closeList, renderList, toggleExpanded } = this;
     return (
       <AppDiv>
-        <SavedList savedList={savedList} currentPlace={currentPlace} closeList={closeList} />
+        <SavedList
+          expanded={expanded}
+          toggleExpanded={toggleExpanded}
+          savedList={savedList}
+          currentPlace={currentPlace}
+          closeList={closeList}
+        />
         <StyledTitle>More places to stay</StyledTitle>
         <PlaceList renderList={renderList} savedList={savedList} places={places} />
       </AppDiv>

@@ -12,11 +12,11 @@ describe('SavedListEntry Component', () => {
   const wrapper = shallow(<SavedListEntry listName={listName} favorited={favorited} />);
 
 
-  it.only('should render the list name', () => {
+  it('should render the list name', () => {
     expect(wrapper.find('ListEntry').text()).toContain('test string');
   });
 
-  it.only('should render a heart', () => {
+  it('should render a heart', () => {
     expect(wrapper.find('Heart').exists());
   });
 });
