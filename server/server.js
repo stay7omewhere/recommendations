@@ -9,11 +9,7 @@ app.use(require('morgan')('dev'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-<<<<<<< HEAD
-app.use(express.static(`${__dirname}./../public`));
-=======
 app.use('/listing/:id', express.static('public'));
->>>>>>> Fix routre for serving index.html
 
 
 app.get('/api/nearbyPlaces/:id', (req, res) => {
