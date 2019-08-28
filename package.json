@@ -20,7 +20,7 @@
     "start": "node ./server/server.js",
     "seed": "node ./database/seed.js",
     "test:watch": "npx jest --watch",
-    "test": "npx jest"
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^0.19.0",
