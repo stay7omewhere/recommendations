@@ -28,15 +28,16 @@ jobs:
 
       - run: npm install
 
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
 
       - run:
           name: Install JUnit coverage reporter
           command: npm install --dev jest-junit
 
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+          
       # run tests!
       - run:
           name: Run tests with JUnit as reporter
