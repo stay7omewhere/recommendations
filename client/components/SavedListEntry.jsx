@@ -22,10 +22,12 @@ const Divider = styled.div`
   background: rgb(0, 0, 0, 0.1);
   margin: 8px 0px;
 `;
-
+Divider.displayName = 'Divider';
 
 const SavedListEntry = (props) => {
-  const { listName, favorited } = props;
+  const {
+    listName, favorited, toggleHeart,
+  } = props;
 
   const heartStyle = {
     fill: favorited ? 'rgb(255, 90, 95)' : 'white',
@@ -34,10 +36,14 @@ const SavedListEntry = (props) => {
     size: '24px',
   };
 
+  const handleClick = () => {
+    toggleHeart(listName);
+  };
+
   return (
     <div>
       <Divider />
-      <ListEntry>
+      <ListEntry onClick={handleClick}>
         {listName}
         <Heart heartStyle={heartStyle} />
       </ListEntry>
@@ -48,6 +54,7 @@ const SavedListEntry = (props) => {
 SavedListEntry.propTypes = {
   listName: PropTypes.string.isRequired,
   favorited: PropTypes.bool.isRequired,
+  toggleHeart: PropTypes.func.isRequired,
 };
 
 export default SavedListEntry;

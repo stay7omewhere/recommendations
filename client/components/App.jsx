@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -37,6 +38,7 @@ class App extends React.Component {
     this.renderList = this.renderList.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.toggleExpanded = this.toggleExpanded.bind(this);
+    this.toggleHeart = this.toggleHeart.bind(this);
   }
 
   componentDidMount() {
@@ -74,20 +76,50 @@ class App extends React.Component {
     }));
   }
 
+  toggleHeart(listName) {
+    this.setState((prevState) => {
+      let currentPlace = {};
+      const places = prevState.places.map((place) => {
+        if (prevState.currentPlace._id === place._id) {
+          const placeCopy = { ...place };
+          const savedListCopy = placeCopy.savedList.slice();
+          const index = savedListCopy.indexOf(listName);
+          if (index >= 0) {
+            savedListCopy.splice(index, 1);
+          } else {
+            savedListCopy.push(listName);
+          }
+          placeCopy.savedList = savedListCopy;
+          currentPlace = placeCopy;
+          return placeCopy;
+        }
+        return place;
+      });
+      return {
+        places,
+        currentPlace,
+      };
+    });
+  }
+
   renderList(place) {
     this.setState({
       currentPlace: place,
     });
   }
 
+
   render() {
     const {
       places, savedList, currentPlace, expanded,
     } = this.state;
-    const { closeList, renderList, toggleExpanded } = this;
+    const {
+      closeList, renderList, toggleExpanded, toggleHeart,
+    } = this;
     return (
       <AppDiv>
         <SavedList
+          toggleHeart={toggleHeart}
           expanded={expanded}
           toggleExpanded={toggleExpanded}
           savedList={savedList}

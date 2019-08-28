@@ -9,7 +9,11 @@ describe('SavedListEntry Component', () => {
   const listName = 'test string';
   const favorited = false;
 
-  const wrapper = shallow(<SavedListEntry listName={listName} favorited={favorited} />);
+  const wrapper = shallow(<SavedListEntry
+    toggleHeart={() => {}}
+    listName={listName}
+    favorited={favorited}
+  />);
 
 
   it('should render the list name', () => {

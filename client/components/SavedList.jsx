@@ -96,7 +96,7 @@ ScrollableList.displayName = 'ScrollableList';
 
 const SavedList = (props) => {
   const {
-    currentPlace, savedList, closeList, expanded, toggleExpanded,
+    currentPlace, savedList, closeList, expanded, toggleExpanded, toggleHeart,
   } = props;
 
   function handleClick(e) {
@@ -112,7 +112,14 @@ const SavedList = (props) => {
       if (currentPlace.savedList.includes(list.name)) {
         favorited = true;
       }
-      return <SavedListEntry key={list._id} favorited={favorited} listName={list.name} />;
+      return (
+        <SavedListEntry
+          toggleHeart={toggleHeart}
+          key={list._id}
+          favorited={favorited}
+          listName={list.name}
+        />
+      );
     });
   }
 
@@ -165,6 +172,7 @@ SavedList.propTypes = {
   closeList: PropTypes.func.isRequired,
   expanded: PropTypes.bool.isRequired,
   toggleExpanded: PropTypes.func.isRequired,
+  toggleHeart: PropTypes.func.isRequired,
 };
 
 export default SavedList;

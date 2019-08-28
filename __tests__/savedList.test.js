@@ -50,6 +50,7 @@ describe('SavedList Component', () => {
       closeList={() => {}}
       expanded={false}
       toggleExpanded={() => {}}
+      toggleHeart={() => {}}
     />,
   );
 
