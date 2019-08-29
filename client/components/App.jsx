@@ -39,10 +39,10 @@ class App extends React.Component {
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.toggleExpanded = this.toggleExpanded.bind(this);
     this.toggleHeart = this.toggleHeart.bind(this);
+    this.addToList = this.addToList.bind(this);
   }
 
   componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyDown);
     const splitUrl = document.URL.split('/');
     const index = splitUrl.indexOf('listing');
     const id = splitUrl[index + 1];
@@ -102,6 +102,28 @@ class App extends React.Component {
     });
   }
 
+  addToList(listName) {
+    this.setState((prevState) => {
+      const savedList = [{ _id: (Math.random() * 1000000).toString(), name: listName },
+        ...prevState.savedList];
+      let currentPlace = {};
+      const places = prevState.places.map((place) => {
+        if (prevState.currentPlace._id === place._id) {
+          const placeCopy = { ...place };
+          placeCopy.savedList = [listName, ...placeCopy.savedList];
+          currentPlace = placeCopy;
+          return placeCopy;
+        }
+        return place;
+      });
+      return {
+        places,
+        currentPlace,
+        savedList,
+      };
+    });
+  }
+
   renderList(place) {
     this.setState({
       currentPlace: place,
@@ -114,11 +136,12 @@ class App extends React.Component {
       places, savedList, currentPlace, expanded,
     } = this.state;
     const {
-      closeList, renderList, toggleExpanded, toggleHeart,
+      closeList, renderList, toggleExpanded, toggleHeart, addToList,
     } = this;
     return (
       <AppDiv>
         <SavedList
+          addToList={addToList}
           toggleHeart={toggleHeart}
           expanded={expanded}
           toggleExpanded={toggleExpanded}

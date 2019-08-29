@@ -1,9 +1,10 @@
 /* eslint-disable no-underscore-dangle */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import SavedListEntry from './SavedListEntry';
 import MiniPlace from './MiniPlace';
+import NewListForm from './NewListForm';
 
 const StyledSavedList = styled.div`
   display: ${(props) => (Object.keys(props.currentPlace).length ? 'flex' : 'none')}
@@ -51,6 +52,10 @@ const ExitButton = styled.button`
   border-radius: 1000px;
   padding: 8px 8px;
   margin: -8px;
+  :focus {
+    outline: 0;
+    box-shadow: rgb(216, 216, 216) 0px 0px 4px 2px;
+  }
 `;
 ExitButton.displayName = 'ExitButton';
 
@@ -72,10 +77,12 @@ const NewList = styled.div`
 NewList.displayName = 'NewList';
 
 const NewListText = styled.span`
-:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
+  :hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  display: ${(props) => (props.showForm ? 'none' : 'inline-block')}
 `;
 
 const StyledList = styled.div`
@@ -95,15 +102,40 @@ ScrollableList.displayName = 'ScrollableList';
 
 
 const SavedList = (props) => {
+  const [showForm, setShowForm] = useState(false);
+
+  let exitButtonRef;
   const {
-    currentPlace, savedList, closeList, expanded, toggleExpanded, toggleHeart,
+    currentPlace, savedList, closeList, expanded, toggleExpanded, toggleHeart, addToList,
   } = props;
 
-  function handleClick(e) {
+  useEffect(() => {
+    exitButtonRef.focus();
+  }, [currentPlace]);
+
+  const handleClick = (e) => {
     if (e.target.id === 'StyledSavedList') {
+      setShowForm(false);
       closeList();
     }
-  }
+  };
+
+  const toggleShowForm = () => {
+    setShowForm(!showForm);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Escape') {
+      setShowForm(false);
+      closeList();
+    }
+  };
+
+  const closeModal = () => {
+    setShowForm(false);
+    closeList();
+  };
+
 
   let renderSavedList = null;
   if (Object.keys(currentPlace).length && savedList.length) {
@@ -127,7 +159,7 @@ const SavedList = (props) => {
     <StyledSavedList id="StyledSavedList" currentPlace={currentPlace} onClick={handleClick}>
       <MainForm>
         <div>
-          <ExitButton id="ExitButton" onClick={closeList}>
+          <ExitButton onKeyDown={handleKeyDown} ref={(ref) => { exitButtonRef = ref; }} id="ExitButton" onClick={closeModal}>
             <Exit viewBox="0 0 24 24" focusable="false">
               <path d="m23.25 24c-.19 0-.38-.07-.53-.22l-10.72-10.72-10.72 10.72c-.29.29-.77.29-1.06 0s-.29-.77 0-1.06l10.72-10.72-10.72-10.72c-.29-.29-.29-.77 0-1.06s.77-.29 1.06 0l10.72 10.72 10.72-10.72c.29-.29.77-.29 1.06 0s .29.77 0 1.06l-10.72 10.72 10.72 10.72c.29.29.29.77 0 1.06-.15.15-.34.22-.53.22" fillRule="evenodd" />
             </Exit>
@@ -137,16 +169,29 @@ const SavedList = (props) => {
           </SavedListTitle>
           <ScrollableList>
             <NewList>
-              <NewListText>
+              <NewListText
+                showForm={showForm}
+                id="CreateNewList"
+                onClick={toggleShowForm}
+              >
                 Create New List
               </NewListText>
+              <NewListForm
+                addToList={addToList}
+                toggleShowForm={toggleShowForm}
+                showForm={showForm}
+              />
             </NewList>
             <StyledList>
               {renderSavedList}
             </StyledList>
           </ScrollableList>
         </div>
-        <MiniPlace toggleExpanded={toggleExpanded} expanded={expanded} place={currentPlace} />
+        <MiniPlace
+          toggleExpanded={toggleExpanded}
+          expanded={expanded}
+          place={currentPlace}
+        />
       </MainForm>
     </StyledSavedList>
   );
@@ -173,6 +218,7 @@ SavedList.propTypes = {
   expanded: PropTypes.bool.isRequired,
   toggleExpanded: PropTypes.func.isRequired,
   toggleHeart: PropTypes.func.isRequired,
+  addToList: PropTypes.func.isRequired,
 };
 
 export default SavedList;
