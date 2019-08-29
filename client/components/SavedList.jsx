@@ -111,7 +111,7 @@ const SavedList = (props) => {
 
   useEffect(() => {
     exitButtonRef.focus();
-  }, [currentPlace]);
+  }, [Object.keys(currentPlace).length]);
 
   const handleClick = (e) => {
     if (e.target.id === 'StyledSavedList') {
