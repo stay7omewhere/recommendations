@@ -1,28 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Heart from './Heart';
-
-const ListEntry = styled.div`
-  padding 16px 0px;
-  outline-offset: 8px;
-  color: rgb(72, 72, 72);
-  display: inline-flex;
-  justify-content: space-between;
-  :hover {
-    cursor: pointer;
-  }
-  width: 100%;
-`;
-ListEntry.displayName = 'ListEntry';
-
-const Divider = styled.div`
-  height: 1px;
-  width: 100%;
-  background: rgb(0, 0, 0, 0.1);
-  margin: 8px 0px;
-`;
-Divider.displayName = 'Divider';
+import * as sc from '../styles/savedListEntryStyles';
 
 const SavedListEntry = (props) => {
   const {
@@ -42,11 +21,11 @@ const SavedListEntry = (props) => {
 
   return (
     <div>
-      <Divider />
-      <ListEntry onClick={handleClick}>
+      <sc.Divider />
+      <sc.ListEntry onClick={handleClick}>
         {listName}
         <Heart heartStyle={heartStyle} />
-      </ListEntry>
+      </sc.ListEntry>
     </div>
   );
 };
