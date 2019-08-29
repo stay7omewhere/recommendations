@@ -10,6 +10,7 @@ const StyledListForm = styled.div`
   color: rgb(72, 72, 72);
   margin-bottom: -5px;
 `;
+StyledListForm.displayName = 'StyledListForm';
 
 const ListInput = styled.input`
   box-sizing: border-box;
@@ -27,6 +28,7 @@ const ListInput = styled.input`
     outline: 0;
   }
 `;
+ListInput.displayName = 'ListInput';
 
 const StyledListFormButton = styled.button`
   box-sizing: border-box;
@@ -50,12 +52,14 @@ const StyledListFormButton = styled.button`
   }
   transition: box-shadow ease 0.2s
 `;
+StyledListFormButton.displayName = 'StyledListFormButton';
 
 const ListFormButtonWrapper = styled.div`
   display: inline-flex;
   flex-direction: row;
   justify-content: flex-end;
 `;
+ListFormButtonWrapper.displayName = 'ListFormButtonWrapper';
 
 const NewListForm = (props) => {
   const [inputValue, setInputValue] = useState('');

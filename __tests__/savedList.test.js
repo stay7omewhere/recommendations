@@ -45,6 +45,7 @@ describe('SavedList Component', () => {
 
   const wrapper = shallow(
     <SavedList
+      addToList={() => {}}
       savedList={savedList}
       currentPlace={testPlace}
       closeList={() => {}}
@@ -67,6 +68,6 @@ describe('SavedList Component', () => {
   });
 
   it('should render an option to create a new list', () => {
-    expect(wrapper.find('NewList').text()).toEqual('Create New List');
+    expect(wrapper.find('NewList').text()).toContain('Create New List');
   });
 });
