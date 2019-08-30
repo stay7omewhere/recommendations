@@ -4,6 +4,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import SavedList from '../client/components/SavedList';
+import * as CurrentPlaceContextModule from '../client/context/CurrentPlaceContext';
+import * as SavedListContextModule from '../client/context/SavedListContext';
+
 
 describe('SavedList Component', () => {
   const testPlace = {
@@ -43,16 +46,16 @@ describe('SavedList Component', () => {
     },
   ];
 
+  jest.spyOn(CurrentPlaceContextModule, 'useCurrentPlaceContext').mockImplementation(() => [
+    testPlace, () => {},
+  ]);
+
+  jest.spyOn(SavedListContextModule, 'useSavedListContext').mockImplementation(() => [
+    savedList, () => {},
+  ]);
+
   const wrapper = shallow(
-    <SavedList
-      addToList={() => {}}
-      savedList={savedList}
-      currentPlace={testPlace}
-      closeList={() => {}}
-      expanded={false}
-      toggleExpanded={() => {}}
-      toggleHeart={() => {}}
-    />,
+    <SavedList />,
   );
 
   it('should dynamically render a list', () => {

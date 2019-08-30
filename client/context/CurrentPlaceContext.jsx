@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useContext } from 'react';
 
 export const CurrentPlaceContext = createContext();
 
@@ -14,3 +14,4 @@ export const CurrentPlaceProvider = (props) => {
 };
 
 export const CurrentPlaceConsumer = CurrentPlaceContext.Consumer;
+export const useCurrentPlaceContext = () => useContext(CurrentPlaceContext);

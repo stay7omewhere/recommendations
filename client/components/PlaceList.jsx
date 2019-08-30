@@ -1,12 +1,12 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Place from './Place';
 import * as sc from '../styles/placeListStyles';
-import { PlacesContext } from '../context/PlacesContext';
+import { usePlacesContext } from '../context/PlacesContext';
 
 const PlaceList = () => {
-  const [places, setPlaces] = useContext(PlacesContext);
+  const [places, setPlaces] = usePlacesContext();
 
   let initEnd = false;
   if (places.length) {

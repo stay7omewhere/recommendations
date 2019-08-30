@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useContext } from 'react';
 
 export const SavedListContext = createContext();
 
@@ -14,3 +14,5 @@ export const SavedListProvider = (props) => {
 };
 
 export const SavedListConsumer = SavedListContext.Consumer;
+
+export const useSavedListContext = () => useContext(SavedListContext);

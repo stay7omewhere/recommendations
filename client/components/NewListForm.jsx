@@ -1,18 +1,18 @@
 /* eslint-disable no-underscore-dangle */
 import React, {
-  useState, useEffect, useContext, useRef,
+  useState, useEffect, useRef,
 } from 'react';
 import PropTypes from 'prop-types';
 import * as sc from '../styles/newListFormStyles';
-import { PlacesContext } from '../context/PlacesContext';
-import { CurrentPlaceContext } from '../context/CurrentPlaceContext';
-import { SavedListContext } from '../context/SavedListContext';
+import { usePlacesContext } from '../context/PlacesContext';
+import { useCurrentPlaceContext } from '../context/CurrentPlaceContext';
+import { useSavedListContext } from '../context/SavedListContext';
 
 const NewListForm = (props) => {
   const [inputValue, setInputValue] = useState('');
-  const [places, setPlaces] = useContext(PlacesContext);
-  const [currentPlace, setCurrentPlace] = useContext(CurrentPlaceContext);
-  const [savedList, setSavedList] = useContext(SavedListContext);
+  const [places, setPlaces] = usePlacesContext();
+  const [currentPlace, setCurrentPlace] = useCurrentPlaceContext();
+  const [savedList, setSavedList] = useSavedListContext();
   const { showForm, toggleShowForm } = props;
 
   const listInputRef = useRef(null);

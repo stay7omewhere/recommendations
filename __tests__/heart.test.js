@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import Heart from '../client/components/Heart';
 
 describe('Heart Component', () => {
@@ -13,7 +13,7 @@ describe('Heart Component', () => {
     size: '28px',
   };
 
-  const wrapper = shallow(<Heart heartStyle={heartStyle} />);
+  const wrapper = mount(<Heart heartStyle={heartStyle} />);
 
   it('should render a heart', () => {
     expect(wrapper.find('StyledHeart').exists());

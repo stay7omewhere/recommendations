@@ -1,17 +1,17 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Heart from './Heart';
 import RatingStars from './RatingStars';
 import * as sc from '../styles/placeStyles';
-import { CurrentPlaceContext } from '../context/CurrentPlaceContext';
+import { useCurrentPlaceContext } from '../context/CurrentPlaceContext';
 
 const Place = (props) => {
   const {
     place, first, last,
   } = props;
 
-  const [, setCurrentPlace] = useContext(CurrentPlaceContext);
+  const [, setCurrentPlace] = useCurrentPlaceContext();
 
   let percent = '100%';
   let color;

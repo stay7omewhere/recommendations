@@ -1,18 +1,18 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Heart from './Heart';
 import * as sc from '../styles/savedListEntryStyles';
-import { CurrentPlaceContext } from '../context/CurrentPlaceContext';
-import { PlacesContext } from '../context/PlacesContext';
+import { useCurrentPlaceContext } from '../context/CurrentPlaceContext';
+import { usePlacesContext } from '../context/PlacesContext';
 
 const SavedListEntry = (props) => {
   const {
     listName, favorited,
   } = props;
 
-  const [currentPlace, setCurrentPlace] = useContext(CurrentPlaceContext);
-  const [places, setPlaces] = useContext(PlacesContext);
+  const [currentPlace, setCurrentPlace] = useCurrentPlaceContext();
+  const [places, setPlaces] = usePlacesContext();
 
   const heartStyle = {
     fill: favorited ? 'rgb(255, 90, 95)' : 'white',

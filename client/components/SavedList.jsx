@@ -1,20 +1,20 @@
 /* eslint-disable no-underscore-dangle */
 import React, {
-  useState, useEffect, useContext, useRef,
+  useState, useEffect, useRef,
 } from 'react';
 import axios from 'axios';
 import SavedListEntry from './SavedListEntry';
 import MiniPlace from './MiniPlace';
 import NewListForm from './NewListForm';
 import * as sc from '../styles/savedListStyles';
-import { CurrentPlaceContext } from '../context/CurrentPlaceContext';
-import { SavedListContext } from '../context/SavedListContext';
+import { useCurrentPlaceContext } from '../context/CurrentPlaceContext';
+import { useSavedListContext } from '../context/SavedListContext';
 
 const SavedList = () => {
   const [showForm, setShowForm] = useState(false);
   const [expanded, setExpanded] = useState(false);
-  const [currentPlace, setCurrentPlace] = useContext(CurrentPlaceContext);
-  const [savedList, setSavedList] = useContext(SavedListContext);
+  const [currentPlace, setCurrentPlace] = useCurrentPlaceContext();
+  const [savedList, setSavedList] = useSavedListContext();
 
   const exitButtonRef = useRef(null);
   const scrollableListRef = useRef(null);
