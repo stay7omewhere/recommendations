@@ -1,54 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Place from './Place';
-
-const PlaceListDiv = styled.div`
-  display: inline-flex;
-  align-items: flex-start;
-`;
-PlaceListDiv.displayName = 'PlaceListDiv';
-
-const OuterDiv = styled.div`
-  display: inline-flex;
-  overflow: hidden;
-  width: 1031px;
-`;
-OuterDiv.displayName = 'OuterDiv';
-
-const InnerDiv = styled.div`
-  display: inline-flex;
-  transition: transform ease 0.5s;
-  transform: translateX(-${(props) => props.index * 349}px);
-`;
-InnerDiv.displayName = 'InnerDiv';
-
-const ButtonWrapper = styled.div`
-  height: 222px;
-  width:22px;
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0px 10px;
-  user-select: none;
-`;
-ButtonWrapper.displayName = 'ButtonWrapper';
-
-const Arrow = styled.svg`
-  height: 22px; 
-  width: 22px; 
-  fill: rgb(118, 118, 118);
-  :hover {
-    cursor: pointer;
-  }
-  :focus {
-    outline: 0;
-  }
-  display: ${(props) => (props.limit ? 'none' : 'show')}
-`;
-Arrow.displayName = 'Arrow';
-
+import * as sc from '../styles/placeListStyles';
 
 class PlaceList extends React.Component {
   constructor(props) {
@@ -103,14 +57,14 @@ class PlaceList extends React.Component {
     const { next, prev } = this;
 
     return (
-      <PlaceListDiv>
-        <ButtonWrapper>
-          <Arrow name="prev" onClick={prev} viewBox="0 0 18 18" limit={start}>
+      <sc.PlaceListDiv>
+        <sc.ButtonWrapper>
+          <sc.Arrow name="prev" onClick={prev} viewBox="0 0 18 18" limit={start}>
             <path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z" fillRule="evenodd" />
-          </Arrow>
-        </ButtonWrapper>
-        <OuterDiv>
-          <InnerDiv index={index}>
+          </sc.Arrow>
+        </sc.ButtonWrapper>
+        <sc.OuterDiv>
+          <sc.InnerDiv index={index}>
             {places.map((place, i) => {
               let first = false;
               let last = false;
@@ -130,14 +84,14 @@ class PlaceList extends React.Component {
                 />
               );
             })}
-          </InnerDiv>
-        </OuterDiv>
-        <ButtonWrapper>
-          <Arrow name="next" onClick={next} viewBox="0 0 18 18" limit={end}>
+          </sc.InnerDiv>
+        </sc.OuterDiv>
+        <sc.ButtonWrapper>
+          <sc.Arrow name="next" onClick={next} viewBox="0 0 18 18" limit={end}>
             <path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fillRule="evenodd" />
-          </Arrow>
-        </ButtonWrapper>
-      </PlaceListDiv>
+          </sc.Arrow>
+        </sc.ButtonWrapper>
+      </sc.PlaceListDiv>
     );
   }
 }
