@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable no-underscore-dangle */
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import * as sc from '../styles/newListFormStyles';
+import { PlacesContext } from '../context/PlacesContext';
+import { CurrentPlaceContext } from '../context/CurrentPlaceContext';
+import { SavedListContext } from '../context/SavedListContext';
 
 const NewListForm = (props) => {
   const [inputValue, setInputValue] = useState('');
+  const [places, setPlaces] = useContext(PlacesContext);
+  const [currentPlace, setCurrentPlace] = useContext(CurrentPlaceContext);
+  const [savedList, setSavedList] = useContext(SavedListContext);
+  const { showForm, toggleShowForm } = props;
 
-  const { showForm, toggleShowForm, addToList } = props;
   let listInputRef;
 
   useEffect(() => {
@@ -18,11 +25,24 @@ const NewListForm = (props) => {
   };
 
   const createList = () => {
+    const newSavedList = [{ _id: (Math.random() * 1000000).toString(), name: inputValue },
+      ...savedList];
+    let newCurrentPlace = {};
+    const newPlaces = places.map((place) => {
+      if (currentPlace._id === place._id) {
+        const placeCopy = { ...place };
+        placeCopy.savedList = [inputValue, ...placeCopy.savedList];
+        newCurrentPlace = placeCopy;
+        return placeCopy;
+      }
+      return place;
+    });
+    setPlaces(newPlaces);
+    setCurrentPlace(newCurrentPlace);
+    setSavedList(newSavedList);
     toggleShowForm();
-    addToList(inputValue);
     setInputValue('');
   };
-
 
   const createButtonColor = 'white';
   const createBackgroundColor = 'rgb(0, 132, 137)';
@@ -65,7 +85,6 @@ const NewListForm = (props) => {
 NewListForm.propTypes = {
   showForm: PropTypes.bool.isRequired,
   toggleShowForm: PropTypes.func.isRequired,
-  addToList: PropTypes.func.isRequired,
 };
 
 export default NewListForm;

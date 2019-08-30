@@ -1,27 +1,41 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
 import SavedListEntry from './SavedListEntry';
 import MiniPlace from './MiniPlace';
 import NewListForm from './NewListForm';
 import * as sc from '../styles/savedListStyles';
+import { CurrentPlaceContext } from '../context/CurrentPlaceContext';
+import { SavedListContext } from '../context/SavedListContext';
 
-const SavedList = (props) => {
+const SavedList = () => {
   const [showForm, setShowForm] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [currentPlace, setCurrentPlace] = useContext(CurrentPlaceContext);
+  const [savedList, setSavedList] = useContext(SavedListContext);
 
   let exitButtonRef;
-  const {
-    currentPlace, savedList, closeList, expanded, toggleExpanded, toggleHeart, addToList,
-  } = props;
 
   useEffect(() => {
     exitButtonRef.focus();
   }, [Object.keys(currentPlace).length]);
 
+  useEffect(() => {
+    axios('/api/savedList')
+      .then((response) => {
+        setSavedList(response.data);
+      });
+  }, []);
+
+  const closeModal = () => {
+    setShowForm(false);
+    setExpanded(false);
+    setCurrentPlace({});
+  };
+
   const handleClick = (e) => {
     if (e.target.id === 'StyledSavedList') {
-      setShowForm(false);
-      closeList();
+      closeModal();
     }
   };
 
@@ -29,18 +43,15 @@ const SavedList = (props) => {
     setShowForm(!showForm);
   };
 
+  const toggleExpanded = () => {
+    setExpanded(!expanded);
+  };
+
   const handleKeyDown = (e) => {
     if (e.key === 'Escape') {
-      setShowForm(false);
-      closeList();
+      closeModal();
     }
   };
-
-  const closeModal = () => {
-    setShowForm(false);
-    closeList();
-  };
-
 
   let renderSavedList = null;
   if (Object.keys(currentPlace).length && savedList.length) {
@@ -51,7 +62,6 @@ const SavedList = (props) => {
       }
       return (
         <SavedListEntry
-          toggleHeart={toggleHeart}
           key={list._id}
           favorited={favorited}
           listName={list.name}
@@ -82,7 +92,6 @@ const SavedList = (props) => {
                 Create New List
               </sc.NewListText>
               <NewListForm
-                addToList={addToList}
                 toggleShowForm={toggleShowForm}
                 showForm={showForm}
               />
@@ -100,30 +109,6 @@ const SavedList = (props) => {
       </sc.MainForm>
     </sc.StyledSavedList>
   );
-};
-
-SavedList.propTypes = {
-  currentPlace: PropTypes.shape({
-    _id: PropTypes.string,
-    url: PropTypes.string,
-    plusVerified: PropTypes.bool,
-    propertyType: PropTypes.string,
-    title: PropTypes.string,
-    city: PropTypes.string,
-    price: PropTypes.number,
-    totalReviews: PropTypes.number,
-    averageReview: PropTypes.number,
-    savedList: PropTypes.arrayOf(PropTypes.string.isRequired),
-  }).isRequired,
-  savedList: PropTypes.arrayOf(PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  })).isRequired,
-  closeList: PropTypes.func.isRequired,
-  expanded: PropTypes.bool.isRequired,
-  toggleExpanded: PropTypes.func.isRequired,
-  toggleHeart: PropTypes.func.isRequired,
-  addToList: PropTypes.func.isRequired,
 };
 
 export default SavedList;

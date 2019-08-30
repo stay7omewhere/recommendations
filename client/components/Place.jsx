@@ -1,14 +1,17 @@
 /* eslint-disable no-underscore-dangle */
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Heart from './Heart';
 import RatingStars from './RatingStars';
 import * as sc from '../styles/placeStyles';
+import { CurrentPlaceContext } from '../context/CurrentPlaceContext';
 
 const Place = (props) => {
   const {
-    place, first, last, renderList,
+    place, first, last,
   } = props;
+
+  const [, setCurrentPlace] = useContext(CurrentPlaceContext);
 
   let percent = '100%';
   let color;
@@ -40,7 +43,7 @@ const Place = (props) => {
   if (place) {
     return (
       <sc.PlaceDiv first={first} last={last}>
-        <sc.HeartWrapper onClick={() => renderList(place)}>
+        <sc.HeartWrapper onClick={() => setCurrentPlace(place)}>
           <Heart heartStyle={heartStyle} />
         </sc.HeartWrapper>
         <sc.Image src={place.url} alt="" />
@@ -82,7 +85,6 @@ Place.propTypes = {
     averageReview: PropTypes.number.isRequired,
     savedList: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   }),
-  renderList: PropTypes.func.isRequired,
 };
 
 export default Place;
