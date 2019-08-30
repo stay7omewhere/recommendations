@@ -1,5 +1,7 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useState, useEffect, useContext } from 'react';
+import React, {
+  useState, useEffect, useContext, useRef,
+} from 'react';
 import axios from 'axios';
 import SavedListEntry from './SavedListEntry';
 import MiniPlace from './MiniPlace';
@@ -14,10 +16,11 @@ const SavedList = () => {
   const [currentPlace, setCurrentPlace] = useContext(CurrentPlaceContext);
   const [savedList, setSavedList] = useContext(SavedListContext);
 
-  let exitButtonRef;
+  const exitButtonRef = useRef(null);
+  const scrollableListRef = useRef(null);
 
   useEffect(() => {
-    exitButtonRef.focus();
+    exitButtonRef.current.focus();
   }, [Object.keys(currentPlace).length]);
 
   useEffect(() => {
@@ -30,6 +33,7 @@ const SavedList = () => {
   const closeModal = () => {
     setShowForm(false);
     setExpanded(false);
+    scrollableListRef.current.scrollTop = 0;
     setCurrentPlace({});
   };
 
@@ -54,12 +58,9 @@ const SavedList = () => {
   };
 
   let renderSavedList = null;
-  if (Object.keys(currentPlace).length && savedList.length) {
+  if (currentPlace.savedList) {
     renderSavedList = savedList.map((list) => {
-      let favorited = false;
-      if (currentPlace.savedList.includes(list.name)) {
-        favorited = true;
-      }
+      const favorited = currentPlace.savedList.includes(list.name);
       return (
         <SavedListEntry
           key={list._id}
@@ -74,7 +75,7 @@ const SavedList = () => {
     <sc.StyledSavedList id="StyledSavedList" currentPlace={currentPlace} onClick={handleClick}>
       <sc.MainForm>
         <div>
-          <sc.ExitButton onKeyDown={handleKeyDown} ref={(ref) => { exitButtonRef = ref; }} id="ExitButton" onClick={closeModal}>
+          <sc.ExitButton onKeyDown={handleKeyDown} ref={exitButtonRef} id="ExitButton" onClick={closeModal}>
             <sc.Exit viewBox="0 0 24 24" focusable="false">
               <path d="m23.25 24c-.19 0-.38-.07-.53-.22l-10.72-10.72-10.72 10.72c-.29.29-.77.29-1.06 0s-.29-.77 0-1.06l10.72-10.72-10.72-10.72c-.29-.29-.29-.77 0-1.06s.77-.29 1.06 0l10.72 10.72 10.72-10.72c.29-.29.77-.29 1.06 0s .29.77 0 1.06l-10.72 10.72 10.72 10.72c.29.29.29.77 0 1.06-.15.15-.34.22-.53.22" fillRule="evenodd" />
             </sc.Exit>
@@ -82,7 +83,7 @@ const SavedList = () => {
           <sc.SavedListTitle>
           Save to list
           </sc.SavedListTitle>
-          <sc.ScrollableList>
+          <sc.ScrollableList ref={scrollableListRef}>
             <sc.NewList>
               <sc.NewListText
                 showForm={showForm}

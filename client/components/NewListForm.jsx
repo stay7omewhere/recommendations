@@ -1,5 +1,7 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useState, useEffect, useContext } from 'react';
+import React, {
+  useState, useEffect, useContext, useRef,
+} from 'react';
 import PropTypes from 'prop-types';
 import * as sc from '../styles/newListFormStyles';
 import { PlacesContext } from '../context/PlacesContext';
@@ -13,10 +15,10 @@ const NewListForm = (props) => {
   const [savedList, setSavedList] = useContext(SavedListContext);
   const { showForm, toggleShowForm } = props;
 
-  let listInputRef;
+  const listInputRef = useRef(null);
 
   useEffect(() => {
-    listInputRef.focus();
+    listInputRef.current.focus();
     setInputValue('');
   }, [showForm]);
 
@@ -54,7 +56,7 @@ const NewListForm = (props) => {
       Name
       <sc.ListInput
         spellcheck="false"
-        ref={(ref) => { listInputRef = ref; }}
+        ref={listInputRef}
         onChange={handleChange}
         value={inputValue}
         type="text"

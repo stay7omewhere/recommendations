@@ -61,23 +61,14 @@ const PlaceList = () => {
       </sc.ButtonWrapper>
       <sc.OuterDiv>
         <sc.InnerDiv index={index}>
-          {places.map((place, i) => {
-            let first = false;
-            let last = false;
-            if (i === 0) {
-              first = true;
-            } else if (i === places.length - 1) {
-              last = true;
-            }
-            return (
-              <Place
-                first={first}
-                last={last}
-                key={place._id}
-                place={place}
-              />
-            );
-          })}
+          {places.map((place, i) => (
+            <Place
+              first={i === 0}
+              last={i === places.length - 1}
+              key={place._id}
+              place={place}
+            />
+          ))}
         </sc.InnerDiv>
       </sc.OuterDiv>
       <sc.ButtonWrapper>

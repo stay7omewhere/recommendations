@@ -21,15 +21,13 @@ const Place = (props) => {
   }
 
   const propertyRender = [];
-  if (place) {
-    if (place.plusVerified) {
-      propertyRender.push(
-        <sc.PlusVerified color={color} key={place.plusVerified}>PLUS</sc.PlusVerified>,
-      );
-      propertyRender.push(<span key={place._id}>Verified</span>);
-    } else {
-      propertyRender.push(<span key={place._id}>{place.propertyType}</span>);
-    }
+  if (place.plusVerified) {
+    propertyRender.push(
+      <sc.PlusVerified color={color} key={place.plusVerified}>PLUS</sc.PlusVerified>,
+    );
+    propertyRender.push(<span key={place._id}>Verified</span>);
+  } else {
+    propertyRender.push(<span key={place._id}>{place.propertyType}</span>);
   }
 
   const favorited = !!place.savedList.length;
@@ -40,28 +38,25 @@ const Place = (props) => {
     size: '28px',
   };
 
-  if (place) {
-    return (
-      <sc.PlaceDiv first={first} last={last}>
-        <sc.HeartWrapper onClick={() => setCurrentPlace(place)}>
-          <Heart heartStyle={heartStyle} />
-        </sc.HeartWrapper>
-        <sc.Image src={place.url} alt="" />
-        <sc.Property color={color}>
-          {propertyRender}
-          <span> · </span>
-          {place.city}
-        </sc.Property>
-        <sc.Title>{place.title}</sc.Title>
-        <sc.Price>{`$${place.price}/night`}</sc.Price>
-        <sc.Review>
-          <RatingStars size="1.1em" color={color} percent={percent} />
-          <span>{` ${place.totalReviews}`}</span>
-        </sc.Review>
-      </sc.PlaceDiv>
-    );
-  }
-  return null;
+  return (
+    <sc.PlaceDiv first={first} last={last}>
+      <sc.HeartWrapper onClick={() => setCurrentPlace(place)}>
+        <Heart heartStyle={heartStyle} />
+      </sc.HeartWrapper>
+      <sc.Image src={place.url} alt="" />
+      <sc.Property color={color}>
+        {propertyRender}
+        <span> · </span>
+        {place.city}
+      </sc.Property>
+      <sc.Title>{place.title}</sc.Title>
+      <sc.Price>{`$${place.price}/night`}</sc.Price>
+      <sc.Review>
+        <RatingStars size="1.1em" color={color} percent={percent} />
+        <span>{` ${place.totalReviews}`}</span>
+      </sc.Review>
+    </sc.PlaceDiv>
+  );
 };
 
 Place.defaultProps = {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import RatingStars from './RatingStars';
 import * as sc from '../styles/miniPlaceStyles';
@@ -6,13 +6,13 @@ import * as sc from '../styles/miniPlaceStyles';
 const MiniPlace = (props) => {
   const { place, expanded, toggleExpanded } = props;
   const percent = `${(place.averageReview / 5) * 100}%`;
-  let buttonNode;
+  const buttonRef = useRef(null);
 
   return (
     <sc.MiniPlaceDiv expanded={expanded}>
       <sc.MiniPlaceButton
-        onClick={() => { toggleExpanded(); buttonNode.blur(); }}
-        ref={(buttonDOM) => { buttonNode = buttonDOM; }}
+        onClick={() => { toggleExpanded(); buttonRef.current.blur(); }}
+        ref={buttonRef}
       >
         <sc.ArrowDiv expanded={expanded}>
           <sc.CollaspArrow viewBox="0 0 18 18" focusable="false">
