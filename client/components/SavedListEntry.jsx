@@ -1,12 +1,18 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Heart from './Heart';
 import * as sc from '../styles/savedListEntryStyles';
+import { useCurrentPlaceContext } from '../context/CurrentPlaceContext';
+import { usePlacesContext } from '../context/PlacesContext';
 
 const SavedListEntry = (props) => {
   const {
-    listName, favorited, toggleHeart,
+    listName, favorited,
   } = props;
+
+  const [currentPlace, setCurrentPlace] = useCurrentPlaceContext();
+  const [places, setPlaces] = usePlacesContext();
 
   const heartStyle = {
     fill: favorited ? 'rgb(255, 90, 95)' : 'white',
@@ -16,7 +22,25 @@ const SavedListEntry = (props) => {
   };
 
   const handleClick = () => {
-    toggleHeart(listName);
+    let newCurrentPlace = {};
+    const newPlaces = places.map((place) => {
+      if (currentPlace._id === place._id) {
+        const placeCopy = { ...place };
+        const savedListCopy = placeCopy.savedList.slice();
+        const index = savedListCopy.indexOf(listName);
+        if (index >= 0) {
+          savedListCopy.splice(index, 1);
+        } else {
+          savedListCopy.push(listName);
+        }
+        placeCopy.savedList = savedListCopy;
+        newCurrentPlace = placeCopy;
+        return placeCopy;
+      }
+      return place;
+    });
+    setCurrentPlace(newCurrentPlace);
+    setPlaces(newPlaces);
   };
 
   return (
@@ -33,7 +57,6 @@ const SavedListEntry = (props) => {
 SavedListEntry.propTypes = {
   listName: PropTypes.string.isRequired,
   favorited: PropTypes.bool.isRequired,
-  toggleHeart: PropTypes.func.isRequired,
 };
 
 export default SavedListEntry;

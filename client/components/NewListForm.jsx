@@ -1,15 +1,24 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable no-underscore-dangle */
+import React, {
+  useState, useEffect, useRef,
+} from 'react';
 import PropTypes from 'prop-types';
 import * as sc from '../styles/newListFormStyles';
+import { usePlacesContext } from '../context/PlacesContext';
+import { useCurrentPlaceContext } from '../context/CurrentPlaceContext';
+import { useSavedListContext } from '../context/SavedListContext';
 
 const NewListForm = (props) => {
   const [inputValue, setInputValue] = useState('');
+  const [places, setPlaces] = usePlacesContext();
+  const [currentPlace, setCurrentPlace] = useCurrentPlaceContext();
+  const [savedList, setSavedList] = useSavedListContext();
+  const { showForm, toggleShowForm } = props;
 
-  const { showForm, toggleShowForm, addToList } = props;
-  let listInputRef;
+  const listInputRef = useRef(null);
 
   useEffect(() => {
-    listInputRef.focus();
+    listInputRef.current.focus();
     setInputValue('');
   }, [showForm]);
 
@@ -18,11 +27,24 @@ const NewListForm = (props) => {
   };
 
   const createList = () => {
+    const newSavedList = [{ _id: (Math.random() * 1000000).toString(), name: inputValue },
+      ...savedList];
+    let newCurrentPlace = {};
+    const newPlaces = places.map((place) => {
+      if (currentPlace._id === place._id) {
+        const placeCopy = { ...place };
+        placeCopy.savedList = [inputValue, ...placeCopy.savedList];
+        newCurrentPlace = placeCopy;
+        return placeCopy;
+      }
+      return place;
+    });
+    setPlaces(newPlaces);
+    setCurrentPlace(newCurrentPlace);
+    setSavedList(newSavedList);
     toggleShowForm();
-    addToList(inputValue);
     setInputValue('');
   };
-
 
   const createButtonColor = 'white';
   const createBackgroundColor = 'rgb(0, 132, 137)';
@@ -34,7 +56,7 @@ const NewListForm = (props) => {
       Name
       <sc.ListInput
         spellcheck="false"
-        ref={(ref) => { listInputRef = ref; }}
+        ref={listInputRef}
         onChange={handleChange}
         value={inputValue}
         type="text"
@@ -65,7 +87,6 @@ const NewListForm = (props) => {
 NewListForm.propTypes = {
   showForm: PropTypes.bool.isRequired,
   toggleShowForm: PropTypes.func.isRequired,
-  addToList: PropTypes.func.isRequired,
 };
 
 export default NewListForm;

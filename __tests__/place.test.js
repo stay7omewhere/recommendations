@@ -1,9 +1,10 @@
 /* eslint-disable no-undef */
-/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import { shallow } from 'enzyme';
 import Place from '../client/components/Place';
+import * as CurrentPlaceContextModule from '../client/context/CurrentPlaceContext';
+
 
 describe('Place Component', () => {
   const testPlace = {
@@ -33,8 +34,19 @@ describe('Place Component', () => {
     totalReviews: 149,
     url: 'test.jpeg',
   };
-  const wrapperVerified = shallow(<Place place={verifiedTestPlace} renderList={() => {}} />);
-  const wrapper = shallow(<Place place={testPlace} renderList={() => {}} />);
+
+  jest.spyOn(CurrentPlaceContextModule, 'useCurrentPlaceContext').mockImplementation(() => ([
+    {}, () => {},
+  ]));
+
+  const wrapperVerified = shallow(
+    <Place place={verifiedTestPlace} />,
+  );
+
+  const wrapper = shallow(
+    <Place place={testPlace} />,
+  );
+  // const wrapper = shallow(<Place place={testPlace} />, { context: { place: 'test' } });
 
   it('should render a picture', () => {
     expect(wrapper.find('Image').prop('src')).toBe('test.jpeg');

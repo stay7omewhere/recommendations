@@ -4,6 +4,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import PlaceList from '../client/components/PlaceList';
+import * as PlacesContextModule from '../client/context/PlacesContext';
 
 describe('PlaceList Component', () => {
   const testPlaceList = [
@@ -81,11 +82,24 @@ describe('PlaceList Component', () => {
     __v: 0,
   }];
 
+  jest.spyOn(PlacesContextModule, 'usePlacesContext').mockImplementation(() => ([
+    testPlaceList, () => {},
+  ]));
+
+  const setState = jest.fn();
+  const useStateSpy = jest.spyOn(React, 'useState');
+  useStateSpy.mockImplementation((init) => [init, setState]);
+
   const wrapper = shallow(
-    <PlaceList places={testPlaceList} savedList={[]} renderList={() => {}} />,
+    <PlaceList />,
   );
+
+  jest.spyOn(PlacesContextModule, 'usePlacesContext').mockImplementation(() => ([
+    biggerTestPlaceList, () => {},
+  ]));
+
   const wrapperBig = shallow(
-    <PlaceList places={biggerTestPlaceList} savedList={[]} renderList={() => {}} />,
+    <PlaceList />,
   );
 
   it('should dynamically render multiple places', () => {
@@ -97,22 +111,22 @@ describe('PlaceList Component', () => {
   });
 
   it('should have correct initial states', () => {
-    expect(wrapper.state()).toEqual({ index: 0, end: true, start: true });
-    expect(wrapperBig.state()).toEqual({ index: 0, end: false, start: true });
+    expect(wrapper.find({ name: 'next' }).prop('limit')).toBe(true);
+    expect(wrapper.find({ name: 'prev' }).prop('limit')).toBe(true);
   });
 
   it('should change index accordingly on click', () => {
     wrapper.find({ name: 'next' }).simulate('click');
-    expect(wrapper.state('index')).toEqual(1);
+    expect(wrapper.find({ name: 'prev' }).prop('limit')).toBe(false);
     wrapper.find({ name: 'prev' }).simulate('click');
-    expect(wrapper.state('index')).toEqual(0);
+    expect(wrapper.find({ name: 'prev' }).prop('limit')).toBe(true);
   });
 
   it('should change start and end state when limits are reached', () => {
-    expect(wrapperBig.state('start')).toBe(true);
+    expect(wrapperBig.find({ name: 'prev' }).prop('limit')).toBe(true);
     wrapperBig.find({ name: 'next' }).simulate('click');
-    expect(wrapperBig.state('end')).toBe(true);
+    expect(wrapperBig.find({ name: 'next' }).prop('limit')).toBe(true);
     wrapperBig.find({ name: 'prev' }).simulate('click');
-    expect(wrapperBig.state('start')).toBe(true);
+    expect(wrapperBig.find({ name: 'prev' }).prop('limit')).toBe(true);
   });
 });
