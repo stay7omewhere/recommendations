@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/jsx-filename-extension */
@@ -14,7 +15,6 @@ describe('SavedList Component', () => {
   let wrapper;
   jest.spyOn(CurrentPlaceContextModule, 'useCurrentPlaceContext').mockImplementation(() => [
     testPlace, (val) => {
-      console.log('testPlace val: ', val);
       testPlace = val;
     },
   ]);
@@ -82,14 +82,12 @@ describe('SavedList Component', () => {
   });
 
   it('should set current place to empy obj on click of outer div', () => {
-    console.log(wrapper.debug());
     expect(testPlace._id).toEqual('1231sd5a1sd5a6sd1');
     wrapper.find('StyledSavedList').simulate('click', { target: { id: 'StyledSavedList' } });
     expect(testPlace._id).toEqual(undefined);
   });
 
   it('should close modal on click of outer div', () => {
-    console.log(wrapper.debug());
     expect(testPlace._id).toEqual('1231sd5a1sd5a6sd1');
     wrapper.find('StyledSavedList').simulate('click', { target: { id: 'StyledSavedList' } });
     expect(testPlace._id).toEqual(undefined);
