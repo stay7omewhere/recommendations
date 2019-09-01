@@ -78,6 +78,7 @@ export const NewListText = styled.span`
 
 display: ${(props) => (props.showForm ? 'none' : 'inline-block')}
 `;
+NewListText.displayName = 'NewListText';
 
 export const StyledList = styled.div`
 display: inline-flex;
