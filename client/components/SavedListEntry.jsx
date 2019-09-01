@@ -7,12 +7,13 @@ import { useCurrentPlaceContext } from '../context/CurrentPlaceContext';
 import { usePlacesContext } from '../context/PlacesContext';
 
 const SavedListEntry = (props) => {
+  const [currentPlace, setCurrentPlace] = useCurrentPlaceContext();
+  const [places, setPlaces] = usePlacesContext();
+
   const {
     listName, favorited,
   } = props;
 
-  const [currentPlace, setCurrentPlace] = useCurrentPlaceContext();
-  const [places, setPlaces] = usePlacesContext();
 
   const heartStyle = {
     fill: favorited ? 'rgb(255, 90, 95)' : 'white',

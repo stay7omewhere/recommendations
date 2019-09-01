@@ -86,10 +86,6 @@ describe('PlaceList Component', () => {
     testPlaceList, () => {},
   ]));
 
-  const setState = jest.fn();
-  const useStateSpy = jest.spyOn(React, 'useState');
-  useStateSpy.mockImplementation((init) => [init, setState]);
-
   const wrapper = shallow(
     <PlaceList />,
   );
@@ -126,6 +122,7 @@ describe('PlaceList Component', () => {
     expect(wrapperBig.find({ name: 'prev' }).prop('limit')).toBe(true);
     wrapperBig.find({ name: 'next' }).simulate('click');
     expect(wrapperBig.find({ name: 'next' }).prop('limit')).toBe(true);
+    expect(wrapperBig.find({ name: 'prev' }).prop('limit')).toBe(false);
     wrapperBig.find({ name: 'prev' }).simulate('click');
     expect(wrapperBig.find({ name: 'prev' }).prop('limit')).toBe(true);
   });

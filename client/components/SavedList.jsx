@@ -16,8 +16,8 @@ const SavedList = () => {
   const [currentPlace, setCurrentPlace] = useCurrentPlaceContext();
   const [savedList, setSavedList] = useSavedListContext();
 
-  const exitButtonRef = useRef(null);
-  const scrollableListRef = useRef(null);
+  const exitButtonRef = useRef({ current: {} });
+  const scrollableListRef = useRef({ current: {} });
 
   useEffect(() => {
     exitButtonRef.current.focus();
