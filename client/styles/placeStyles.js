@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 export const PlaceDiv = styled.div`
-width: 333;
+width: 333px;
 padding-right: ${(props) => (props.last ? '0px' : '8px')};
 padding-left: ${(props) => (props.first ? '0px' : '8px')};
 position: relative;
@@ -15,7 +15,7 @@ PlaceDiv.displayName = 'PlaceDiv';
 export const Image = styled.img`
 border-radius: 3px;
 width: 100%;
-height: 222;
+height: 222px;
 object-fit: fill;
 user-select: none;
 `;
