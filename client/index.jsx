@@ -9,4 +9,10 @@ WebFont.load({
   },
 });
 
-ReactDOM.render(<App />, document.querySelector('#app'));
+const Recommendations = {
+  App,
+  React,
+  ReactDOM,
+};
+
+export default Recommendations;

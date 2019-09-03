@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const model = require('../database/index');
 // const path = require('path');
 
@@ -7,9 +8,12 @@ const app = express();
 
 app.use(require('morgan')('dev'));
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/listing/:id', express.static('public'));
+app.use(express.static('node_modules'));
+app.use(express.static('public'));
 
 
 app.get('/api/nearbyPlaces/:id', (req, res) => {
