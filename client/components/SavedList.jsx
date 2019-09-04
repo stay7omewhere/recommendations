@@ -24,7 +24,7 @@ const SavedList = () => {
   }, [Object.keys(currentPlace).length]);
 
   useEffect(() => {
-    axios('/api/savedList')
+    axios('http://ec2-52-53-214-90.us-west-1.compute.amazonaws.com:3004/api/savedList')
       .then((response) => {
         setSavedList(response.data);
       });
