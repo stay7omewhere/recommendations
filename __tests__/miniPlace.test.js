@@ -4,6 +4,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import MiniPlace from '../client/components/MiniPlace';
+import * as CurrentPlaceContextModule from '../client/context/CurrentPlaceContext';
 
 describe('MiniPlace Component', () => {
   const testPlace = {
@@ -24,6 +25,13 @@ describe('MiniPlace Component', () => {
     theSpace: 'thespacetext',
     neighborhood: 'neighborhoodtext',
   };
+
+  let current = {};
+  jest.spyOn(CurrentPlaceContextModule, 'useCurrentPlaceContext').mockImplementation(() => ([
+    current, (val) => {
+      current = val;
+    },
+  ]));
 
   const wrapper = shallow(
     <MiniPlace expanded={false} toggleExpanded={() => {}} place={testPlace} />,
