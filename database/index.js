@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const db = mongoose.connection;
 
-mongoose.connect('mongodb://localhost/airbnb', {
+mongoose.connect('mongodb://172.17.0.2/airbnb', {
   useNewUrlParser: true,
 });
 

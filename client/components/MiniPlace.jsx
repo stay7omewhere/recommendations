@@ -1,15 +1,23 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import RatingStars from './RatingStars';
 import * as sc from '../styles/miniPlaceStyles';
+import { useCurrentPlaceContext } from '../context/CurrentPlaceContext';
+
 
 const MiniPlace = (props) => {
   const { place, expanded, toggleExpanded } = props;
   const percent = `${(place.averageReview / 5) * 100}%`;
+  const [currentPlace] = useCurrentPlaceContext();
   const buttonRef = useRef(null);
+  const miniPlaceRef = useRef(null);
+
+  useEffect(() => {
+    miniPlaceRef.current.scrollTop = 0;
+  }, [currentPlace]);
 
   return (
-    <sc.MiniPlaceDiv expanded={expanded}>
+    <sc.MiniPlaceDiv ref={miniPlaceRef} expanded={expanded}>
       <sc.MiniPlaceButton
         onClick={() => { toggleExpanded(); buttonRef.current.blur(); }}
         ref={buttonRef}
