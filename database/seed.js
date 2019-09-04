@@ -63,6 +63,7 @@ model.db.once('open', () => {
 
     return model.Place.create(newPlaces);
   }).then(() => {
+    console.log('Seeding Done');
     process.exit();
   });
 });
