@@ -2,7 +2,12 @@
   <head>
   </head>
   <body>
-    <div id="app"></div>
-    <script src="main.js"></script>
+    <div id="Recommendations"></div>
+      <script src="main.js"></script>
+      <script>
+        let { React, ReactDOM, App: Recommendations} = RecommendationsModule;
+        ReactDOM.render(React.createElement(Recommendations), 
+          document.querySelector('#Recommendations'))
+      </script>
   </body>
 </html>
