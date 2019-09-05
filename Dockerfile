@@ -10,6 +10,4 @@ RUN npm install --production
 
 EXPOSE 3004
 
-CMD ["npm", "run", "build"]
-
 CMD [ "npm", "start" ]

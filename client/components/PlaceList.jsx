@@ -21,7 +21,8 @@ const PlaceList = () => {
     const splitUrl = document.URL.split('/');
     const i = splitUrl.indexOf('listing');
     const id = splitUrl[i + 1];
-    axios(`http://ec2-52-53-214-90.us-west-1.compute.amazonaws.com:3004/api/nearbyPlaces/${id}`)
+    const url = `http://ec2-13-52-191-198.us-west-1.compute.amazonaws.com:3004/api/nearbyPlaces/${id}`;
+    axios(url)
       .then((response) => response.data)
       .then((fetchedPlaces) => {
         setPlaces(fetchedPlaces);
