@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const compression = require('compression');
 const model = require('../database/index');
 // const path = require('path');
 
@@ -8,6 +9,7 @@ const app = express();
 
 app.use(require('morgan')('dev'));
 
+app.use(compression());
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
