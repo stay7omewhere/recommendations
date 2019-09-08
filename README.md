@@ -1,6 +1,6 @@
-# Project Name
+# Recommedantions Service
 
-> Project description
+> Displays listings nearby
 
 ## Related Projects
 
@@ -17,23 +17,23 @@
 1
 ## Usage
 
-> Some usage instructions
+> Setup config.js in ./database/
 
 ## Requirements
 
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 6.13.0
-- etc
+- Node 10.16
 
 ## Development
+
+- npm run seed
+- npm run build:dev
+- npm run start:dev
 
 ### Installing Dependencies
 
 From within the root directory:
 
 ```sh
-npm install -g webpack
 npm install
 ```
 
