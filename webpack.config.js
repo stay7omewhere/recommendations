@@ -1,6 +1,16 @@
 const path = require('path');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
+  plugins: [new CompressionPlugin({
+    filename: '[path].br[query]',
+    algorithm: 'brotliCompress',
+    test: /\.(js|jsx)$/,
+    compressionOptions: { level: 11 },
+    threshold: 10240,
+    minRatio: 0.8,
+    deleteOriginalAssets: false,
+  })],
   entry: './client/index.jsx',
   output: {
     filename: 'main.js',
