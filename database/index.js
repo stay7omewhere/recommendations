@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
+const config = require('./config');
+
+const login = config.user ? `${config.user}:${config.password}@` : '';
 
 const db = mongoose.connection;
 
-mongoose.connect('mongodb://database/airbnb', {
+mongoose.connect(`mongodb://${login}${config.host}/airbnb`, {
   useNewUrlParser: true,
 });
 

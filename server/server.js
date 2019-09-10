@@ -1,22 +1,14 @@
 const express = require('express');
 const cors = require('cors');
-const compression = require('compression');
 const model = require('../database/index');
-// const path = require('path');
 
 const port = 3004;
 const app = express();
 
 app.use(require('morgan')('dev'));
 
-app.use(compression());
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use('/listing/:id', express.static('public'));
-app.use(express.static('node_modules'));
-app.use(express.static('public'));
-
 
 app.get('/api/nearbyPlaces/:id', (req, res) => {
   // ranges from 8 - 13

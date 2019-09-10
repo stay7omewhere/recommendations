@@ -61,3 +61,5 @@ typings/
 .next
 
 # bundled js
+aws-keys.json
+yarn.lock

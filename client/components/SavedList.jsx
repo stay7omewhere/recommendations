@@ -21,6 +21,7 @@ const SavedList = () => {
 
   useEffect(() => {
     exitButtonRef.current.focus();
+    document.body.style.overflow = Object.keys(currentPlace).length ? 'hidden' : 'auto';
   }, [Object.keys(currentPlace).length]);
 
   useEffect(() => {
