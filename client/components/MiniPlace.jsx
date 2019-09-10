@@ -14,7 +14,7 @@ const MiniPlace = (props) => {
 
   useEffect(() => {
     miniPlaceRef.current.scrollTop = 0;
-  }, [currentPlace]);
+  }, [currentPlace, expanded]);
 
   return (
     <sc.MiniPlaceDiv ref={miniPlaceRef} expanded={expanded}>

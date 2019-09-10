@@ -6,7 +6,9 @@ const port = 3004;
 const app = express();
 
 app.use(require('morgan')('dev'));
+
 app.use(cors());
+app.use('/listing/:id', express.static('public'));
 
 app.get('/api/nearbyPlaces/:id', (req, res) => {
   // ranges from 8 - 13
