@@ -5,17 +5,17 @@
 ## API
   
   - GET /api/room/:id/recommendations
-    gets all recommended rooms for the room with id :id
-    returns a json object with the id's of all the recommended rooms
+    - gets all recommended rooms for the room with id :id
+    - returns a json object with the id's of all the recommended rooms
   - POST /api/room/:id/recommendations
-    posts a new recommnendation to the room with id :id
-    does not return anything
+    - posts a new recommnendation to the room with id :id
+    - does not return anything
   - DELETE /api/room/:id/recommendations/:recid
-    deletes the recommendation with id :recid for the room with id :id
-    return the id of the deleted recommendation
+    - deletes the recommendation with id :recid for the room with id :id
+    - return the id of the deleted recommendation
   - PUT /api/room/:id/recommendations/:recid 
-    replaces the recommendendation at id :recid with the recommendation sent in the request body
-    return the original recommnedation id
+    - replaces the recommendendation at id :recid with the recommendation sent in the request body
+    - return the original recommnedation id
 
 ## Related Projects
 
