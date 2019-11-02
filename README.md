@@ -4,26 +4,25 @@
 
 ## API
   
-  - GET /api/room/:id/recommendations
-    - gets all recommended rooms for the room with id :id
+  - GET /api/room/:roomid/user/:userid/recommendations
+    - request body is empty
+    - gets all recommended rooms for the room with id :roomid to the user :userid
     - returns a json object with the information of all the recommended rooms in format 
-
     [
-        {
-            "title": "Raising Revenue",
-            "author_first_name": "Jane",
-            "author_last_name": "Smith",
-            "author_email": "jane.smith@example.gov",
-            "year": "2012",
-            "month": "August",
-            "day": "18",
-            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ante ut augue scelerisque ornare. Aliquam tempus rhoncus quam vel luctus. Sed scelerisque fermentum fringilla. Suspendisse tincidunt nisl a metus feugiat vitae vestibulum enim vulputate. Quisque vehicula dictum elit, vitae cursus libero auctor sed. Vestibulum fermentum elementum nunc. Proin aliquam erat in turpis vehicula sit amet tristique lorem blandit. Nam augue est, bibendum et ultrices non, interdum in est. Quisque gravida orci lobortis... "
-        }
+      {
+        roomId:integer,
+        roomName:string,
+        roomPrice:integer,
+        roomLocation:string
+        roomType:string,
+        roomRating:integer
+      }
     ]
-  - POST /api/room/:id/recommendations
-    - posts a new recommnendation to the room with id :id
-    - does not return anything
-  - DELETE /api/room/:id/recommendations/:recid
+  - POST /api/room/:roomid/user/:userid/recommendations
+    - request body is empty
+    - creates a recommendation relationship between the room at :roomid to the user at :userid
+  - DELETE /api/room/:roomid
+    - request body is empty
     - deletes the recommendation with id :recid for the room with id :id
     - return the id of the deleted recommendation
   - PUT /api/room/:id/recommendations/:recid 
