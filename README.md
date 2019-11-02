@@ -6,7 +6,15 @@
   
   - GET /api/room/:id/recommendations
     - gets all recommended rooms for the room with id :id
-    - returns a json object with the id's of all the recommended rooms
+    - returns a json object with the information of all the recommended rooms in format 
+    [ {
+      id:integer,
+      name:string,
+      room_type:string,
+      price:integer,
+      rating:integer,
+      location:string
+    }]
   - POST /api/room/:id/recommendations
     - posts a new recommnendation to the room with id :id
     - does not return anything
