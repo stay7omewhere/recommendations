@@ -3,10 +3,9 @@ const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   plugins: [new CompressionPlugin({
-    filename: '[path].br[query]',
-    algorithm: 'brotliCompress',
+    filename: '[path].gz[query]',
+    algorithm: 'gzip',
     test: /\.(js|jsx)$/,
-    compressionOptions: { level: 11 },
     threshold: 10240,
     minRatio: 0.8,
     deleteOriginalAssets: false,

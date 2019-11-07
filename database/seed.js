@@ -40,7 +40,7 @@ model.db.once('open', () => {
       // generates a places data
       const newPlace = {
         id: i,
-        url: `https://mock-property-images.s3-us-west-1.amazonaws.com/houses/house-${i}.jpeg`,
+        url: `https://upload.wikimedia.org/wikipedia/en/9/95/Old_John_Corliss_House.jpeg`,
         title: faker.lorem.sentence(),
         city: faker.address.city(),
         state: faker.address.state(),
