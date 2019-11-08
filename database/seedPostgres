@@ -1,0 +1,16 @@
+CREATE TABLE rooms
+(
+  id SERIAL PRIMARY KEY UNIQUE,
+  name TEXT NOT NULL,
+  image TEXT,
+  price INTEGER DEFAULT 0,
+  rating FLOAT DEFAULT 4.5,
+  location VARCHAR(60),
+  availability INTEGER DEFAULT 180,
+  type VARCHAR(60),
+  availableBeds INTEGER,
+  plus BOOLEAN
+);
+
+COPY rooms(id,name,image,price,rating,location,availability,type,availableBeds,plus) 
+FROM '/Users/SreeshM/data.csv' DELIMITER ',' CSV HEADER;
