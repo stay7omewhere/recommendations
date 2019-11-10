@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const model = require('../database/index');
+const db = require('../database/neo4jIndex');
 
 const port = 3004;
 const app = express();
@@ -13,14 +14,35 @@ app.use('/listing/:id', express.static('public'));
 app.get('/api/nearbyPlaces/:id', (req, res) => {
   // ranges from 8 - 13
   const randomAmount = Math.floor(Math.random() * 6 + 8);
-  model.Place.aggregate([{ $sample: { size: randomAmount } }]).then((result) => {
-    res.send(result);
+  db.getRoom(req.params.id, randomAmount, (error, result) => {
+    if (error) {
+      console.log(error);
+      res.send(error);
+    } else {
+      console.log(result);
+      res.send(result);
+    }
   });
+  // model.Place.aggregate([{ $sample: { size: randomAmount } }]).then((result) => {
+  //   res.send(result);
+  // });
 });
 
 app.get('/api/savedlist', (req, res) => {
   model.SavedList.find().exec().then((result) => {
     res.send(result);
+  });
+});
+
+app.get('/api/testGet', (req, res) => {
+  db.getRoom(9999480, (error, result) => {
+    if (error) {
+      console.log(error);
+      res.send(error);
+    } else {
+      console.log(result);
+      res.send(result);
+    }
   });
 });
 
