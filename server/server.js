@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 const cors = require('cors');
 const model = require('../database/index');
@@ -23,14 +24,32 @@ app.get('/api/nearbyPlaces/:id', (req, res) => {
       res.send(result);
     }
   });
-  // model.Place.aggregate([{ $sample: { size: randomAmount } }]).then((result) => {
+});
+
+app.get('/api/savedList/:userid', (req, res) => {
+  db.getSavedRooms(req.params.userid,(error,result) => {
+    if(error) {
+      console.log(error);
+      res.send(error);
+    } else {
+      console.log(result);
+      res.send(result);
+    }
+  });
+  // model.SavedList.find().exec().then((result) => {
   //   res.send(result);
   // });
 });
 
-app.get('/api/savedlist', (req, res) => {
-  model.SavedList.find().exec().then((result) => {
-    res.send(result);
+app.post('/api/savedList/:roomid/:userid', (req,res) => {
+  db.saveRoom(req.params.userid,req.params.roomid,(error,result) => {
+    if(error) {
+      console.log(error);
+      res.send(error);
+    } else {
+      console.log(result);
+      res.send(result);
+    }
   });
 });
 
