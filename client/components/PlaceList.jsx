@@ -25,7 +25,7 @@ const PlaceList = () => {
     axios(url)
       .then((response) => response.data)
       .then((fetchedPlaces) => {
-        setPlaces(fetchedPlaces);
+        setPlaces(fetchedPlaces.records);
       });
   }, []);
 

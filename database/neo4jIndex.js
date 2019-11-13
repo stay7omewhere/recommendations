@@ -37,10 +37,10 @@ let saveRoom = function(userid,roomid,cb) {
 let getSavedRooms = function(userid,cb) {
     session.writeTransaction((transaction) => {
         transaction.run(
-            `MATCH(u:User) where u.id = ${userid} MATCH (u)-[r:HAS_SAVED]-(c) return c`
+            `MATCH(u:User) where u.id = ${userid} MATCH (u)-[r:HAS_SAVED]-(c) return c ORDER BY c.id LIMIT 15`
         )
         .then((result) => {
-            console.log(result);
+            // console.log(result);
             cb(null,result);
         })
         .catch((err) => {
