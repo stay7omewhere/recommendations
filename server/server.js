@@ -1,6 +1,8 @@
+require('newrelic');
 const express = require('express');
 const cors = require('cors');
 const model = require('../database/index');
+const db = require('../database/neo4jIndex');
 
 const port = 3004;
 const app = express();
@@ -8,19 +10,42 @@ const app = express();
 app.use(require('morgan')('dev'));
 
 app.use(cors());
-app.use('/listing/:id', express.static('public'));
+app.use('/', express.static('public'));
+app.use('/rooms/:id', express.static('public'));
 
 app.get('/api/nearbyPlaces/:id', (req, res) => {
-  // ranges from 8 - 13
-  const randomAmount = Math.floor(Math.random() * 6 + 8);
-  model.Place.aggregate([{ $sample: { size: randomAmount } }]).then((result) => {
-    res.send(result);
+  db.getRoom(req.params.id, 10, (error, result) => {
+    if (error) {
+      // console.log(error);
+      res.status(500).send(error);
+    } else {
+      // console.log(result);
+      res.status(200).send(result);
+    }
   });
 });
 
-app.get('/api/savedlist', (req, res) => {
-  model.SavedList.find().exec().then((result) => {
-    res.send(result);
+app.get('/api/savedList/:userid', (req, res) => {
+  db.getSavedRooms(req.params.userid,(error,result) => {
+    if(error) {
+      // console.log(error);
+      res.status(500).send(error);
+    } else {
+      // console.log(result);
+      res.status(200).send(result);
+    }
+  });
+});
+
+app.post('/api/savedList/:roomid/:userid', (req,res) => {
+  db.saveRoom(req.params.userid,req.params.roomid,(error,result) => {
+    if(error) {
+      // console.log(error);
+      res.status(500).send(error);
+    } else {
+      // console.log(result);
+      res.status(201).send(result);
+    }
   });
 });
 

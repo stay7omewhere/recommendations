@@ -21,11 +21,11 @@ const PlaceList = () => {
     const splitUrl = document.URL.split('/');
     const i = splitUrl.indexOf('listing');
     const id = splitUrl[i + 1];
-    const url = `http://ec2-13-52-191-198.us-west-1.compute.amazonaws.com:3004/api/nearbyPlaces/${id}`;
+    const url = `http://localhost:3004/api/nearbyPlaces/${id}`;
     axios(url)
       .then((response) => response.data)
       .then((fetchedPlaces) => {
-        setPlaces(fetchedPlaces);
+        setPlaces(fetchedPlaces.records);
       });
   }, []);
 
@@ -66,7 +66,7 @@ const PlaceList = () => {
             <Place
               first={i === 0}
               last={i === places.length - 1}
-              key={place._id}
+              key={place._fields[0].properties.id}
               place={place}
             />
           ))}

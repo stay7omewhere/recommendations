@@ -1,0 +1,21 @@
+USING PERIODIC COMMIT 500
+LOAD CSV WITH HEADERS FROM 'file:///test.csv' AS row
+WITH toInteger(row.id) AS roomID, toInteger(row.price) AS priceValue, toInteger(row.availability) AS days, toInteger(row.rating) AS rating, toInteger(row.availableBeds) AS beds,row.image AS image,row.name AS name,row.location AS location,row.type AS type,row.plus AS plus
+CREATE (r:Room { id: roomID, name: name, imageUrl: image, plus: plus})
+MERGE (l:Location{name:location})
+MERGE (p:Price{value:priceValue})
+MERGE (t:Room_Type{type:type})
+MERGE (rat:Rating{value:rating})
+MERGE (a:Availability{days:days})
+MERGE (b:Beds{count:beds})
+CREATE (r)-[rel:LOCATED_IN]->(l)
+CREATE (r)-[re:HAS_PRICE]->(p)
+CREATE (r)-[rela:IS_TYPE]->(t)
+CREATE (r)-[relations:HAS_RATING]->(rat)
+CREATE (r)-[relat:IS_AVAILABLE]->(a)
+CREATE (r)-[relation:HAS_BEDS]->(b)
+RETURN count(rel)
+
+
+MATCH (n)
+DETACH DELETE n

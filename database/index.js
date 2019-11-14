@@ -5,7 +5,7 @@ const login = config.user ? `${config.user}:${config.password}@` : '';
 
 const db = mongoose.connection;
 
-mongoose.connect(`mongodb://${login}${config.host}/airbnb`, {
+mongoose.connect(`mongodb://localhost:27017/airbnb`, {
   useNewUrlParser: true,
 });
 

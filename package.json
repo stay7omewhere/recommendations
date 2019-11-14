@@ -25,13 +25,17 @@
     "start": "node ./server/server.js",
     "seed": "node ./database/seed.js",
     "test:dev": "npx jest --watch",
-    "test": "jest --ci --runInBand  --reporters=default --reporters=jest-junit"
+    "test": "jest --ci --runInBand  --reporters=default --reporters=jest-junit",
+    "generatedata": "node ./database/datageneration.js"
   },
   "dependencies": {
+    "aws-sdk": "^2.562.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.6.10",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "neo4j-driver": "^1.7.6",
+    "newrelic": "^6.1.0"
   },
   "devDependencies": {
     "prop-types": "^15.7.2",

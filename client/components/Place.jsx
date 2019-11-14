@@ -30,7 +30,7 @@ const Place = (props) => {
     propertyRender.push(<span key={place._id}>{place.propertyType}</span>);
   }
 
-  const favorited = !!place.savedList.length;
+  const favorited = false;//!!place.savedList.length;
   const heartStyle = {
     fill: favorited ? 'rgb(255, 90, 95)' : 'rgb(72, 72, 72)',
     fillOpacity: favorited ? '1' : '0.5',
@@ -43,17 +43,17 @@ const Place = (props) => {
       <sc.HeartWrapper onClick={() => setCurrentPlace(place)}>
         <Heart heartStyle={heartStyle} />
       </sc.HeartWrapper>
-      <sc.Image src={place.url} alt="" />
+      <sc.Image src={place._fields[0].properties.imageUrl} alt="" />
       <sc.Property color={color}>
         {propertyRender}
         <span> · </span>
-        {place.city}
+        {place._fields[1].properties.name}
       </sc.Property>
-      <sc.Title>{place.title}</sc.Title>
-      <sc.Price>{`$${place.price}/night`}</sc.Price>
+      <sc.Title>{place._fields[0].properties.name}</sc.Title>
+      <sc.Price>{`$${place._fields[2].properties.value}/night`}</sc.Price>
       <sc.Review>
         <RatingStars size="1.1em" color={color} percent={percent} />
-        <span>{` ${place.totalReviews}`}</span>
+        <span>{` 10`}</span>
       </sc.Review>
     </sc.PlaceDiv>
   );
