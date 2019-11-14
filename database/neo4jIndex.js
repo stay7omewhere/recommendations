@@ -1,11 +1,11 @@
 const neo4j = require('neo4j-driver').v1;
-const driver = new neo4j.driver('bolt://localhost:7687', neo4j.auth.basic('neo4j', 'iopkjh123'));
+const driver = new neo4j.driver('bolt://localhost:7687', neo4j.auth.basic('neo4j', 'iopkjh123'),{ disableLosslessIntegers: true });
 const session = driver.session();
 
 let getRoom = function (id,size,cb) {
     session.writeTransaction((transaction) => {
         transaction.run(
-            `match(r:Room) where r.id = ${id} match (r)-[b:LOCATED_IN]-(c:Location) match (c)-[d]-(f) with f LIMIT ${size} return f` 
+            `match(r:Room) where r.id = ${id} match (r)-[b:LOCATED_IN]-(c:Location) match (c)-[d]-(f:Room) with f LIMIT ${size}  match (f)-[e:LOCATED_IN]-(l:Location) match(f)-[j:HAS_PRICE]-(p:Price) return f,l,p` 
         )
         .then((result) => {
             console.log('got room from database');

@@ -10,7 +10,8 @@ const app = express();
 app.use(require('morgan')('dev'));
 
 app.use(cors());
-app.use('/listing/:id', express.static('public'));
+app.use('/', express.static('public'));
+app.use('/rooms/:id', express.static('public'));
 
 app.get('/api/nearbyPlaces/:id', (req, res) => {
   db.getRoom(req.params.id, 10, (error, result) => {

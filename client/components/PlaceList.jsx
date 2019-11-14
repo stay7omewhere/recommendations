@@ -66,7 +66,7 @@ const PlaceList = () => {
             <Place
               first={i === 0}
               last={i === places.length - 1}
-              key={place._id}
+              key={place._fields[0].properties.id}
               place={place}
             />
           ))}
