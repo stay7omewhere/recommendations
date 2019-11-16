@@ -1,0 +1,55 @@
+const neo4j = require('neo4j-driver').v1;
+const driver = new neo4j.driver('bolt://ec2-54-219-130-87.us-west-1.compute.amazonaws.com:7687', neo4j.auth.basic('neo4j', 'iopkjh'),{ disableLosslessIntegers: true });
+const session = driver.session();
+
+let getRoom = function (id,size,cb) {
+    session.writeTransaction((transaction) => {
+        transaction.run(
+            `match(r:Room) where r.id = ${id} match (r)-[b:LOCATED_IN]-(c:Location) match (c)-[d]-(f:Room) with f LIMIT ${size}  match (f)-[e:LOCATED_IN]-(l:Location) match(f)-[j:HAS_PRICE]-(p:Price) return f,l,p` 
+        )
+        .then((result) => {
+            console.log('got room from database');
+            cb(null,result);
+        })
+        .catch((err) => {
+            console.log('error getting room from database');
+            cb(err);
+        });
+    });
+}
+
+let saveRoom = function(userid,roomid,cb) {
+    session.writeTransaction((transaction) => {
+        transaction.run( 
+            `MATCH(u:User) WHERE u.id = ${userid} MATCH (r:Room) WHERE r.id = ${roomid} MERGE (u)-[s:HAS_SAVED]->(r) return s`
+        )
+        .then((result) => {
+            console.log('saved room');
+            cb(null,result);
+        })
+        .catch((err)=> {
+            console.log('error saving room');
+            cb(err);
+        });
+    });
+}
+
+let getSavedRooms = function(userid,cb) {
+    session.writeTransaction((transaction) => {
+        transaction.run(
+            `MATCH(u:User) where u.id = ${userid} MATCH (u)-[r:HAS_SAVED]-(c) return c ORDER BY c.id LIMIT 15`
+        )
+        .then((result) => {
+            // console.log(result);
+            cb(null,result);
+        })
+        .catch((err) => {
+            console.log('error getting saved list');
+            cb(err);
+        });
+    });
+}
+
+module.exports.getRoom = getRoom;
+module.exports.saveRoom = saveRoom;
+module.exports.getSavedRooms = getSavedRooms;
